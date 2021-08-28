@@ -3,29 +3,45 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		238A4F3026D7CFE90091819A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238A4F2F26D7CFE90091819A /* AppDelegate.swift */; };
 		238A4F3226D7CFE90091819A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238A4F3126D7CFE90091819A /* SceneDelegate.swift */; };
-		238A4F3426D7CFE90091819A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238A4F3326D7CFE90091819A /* ViewController.swift */; };
 		238A4F3726D7CFE90091819A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 238A4F3526D7CFE90091819A /* Main.storyboard */; };
 		238A4F3A26D7CFE90091819A /* EasyDiet.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 238A4F3826D7CFE90091819A /* EasyDiet.xcdatamodeld */; };
 		238A4F3C26D7CFED0091819A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 238A4F3B26D7CFED0091819A /* Assets.xcassets */; };
 		238A4F3F26D7CFED0091819A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 238A4F3D26D7CFED0091819A /* LaunchScreen.storyboard */; };
+		238A4F5026D7D8620091819A /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238A4F4F26D7D8620091819A /* DetailTableViewController.swift */; };
+		239BC74526D819050044E9DE /* DataManager+DiaryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC74426D819050044E9DE /* DataManager+DiaryEntity.swift */; };
+		239BC74726D819210044E9DE /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC74626D819210044E9DE /* DataManager.swift */; };
+		239BC74E26D89E870044E9DE /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC74D26D89E870044E9DE /* Extension+Date.swift */; };
+		239BC75026D8A0310044E9DE /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC74F26D8A0310044E9DE /* Diary.swift */; };
+		239BC75226D8CD670044E9DE /* Extension+UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC75126D8CD670044E9DE /* Extension+UITableViewController.swift */; };
+		239BC75426D8D50D0044E9DE /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC75326D8D50D0044E9DE /* HomeTableViewController.swift */; };
+		F294BF2CFD0DBEA8188E46BE /* Pods_EasyDiet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD04EC6CC489125D7D6BE5E9 /* Pods_EasyDiet.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		238A4F2C26D7CFE90091819A /* EasyDiet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyDiet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		238A4F2F26D7CFE90091819A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		238A4F3126D7CFE90091819A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		238A4F3326D7CFE90091819A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		238A4F3626D7CFE90091819A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		238A4F3926D7CFE90091819A /* EasyDiet.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyDiet.xcdatamodel; sourceTree = "<group>"; };
 		238A4F3B26D7CFED0091819A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		238A4F3E26D7CFED0091819A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		238A4F4026D7CFED0091819A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		238A4F4F26D7D8620091819A /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
+		239BC74426D819050044E9DE /* DataManager+DiaryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+DiaryEntity.swift"; sourceTree = "<group>"; };
+		239BC74626D819210044E9DE /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		239BC74D26D89E870044E9DE /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
+		239BC74F26D8A0310044E9DE /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
+		239BC75126D8CD670044E9DE /* Extension+UITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITableViewController.swift"; sourceTree = "<group>"; };
+		239BC75326D8D50D0044E9DE /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		47CBDF2B4F43FF6EA4A43660 /* Pods-EasyDiet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyDiet.release.xcconfig"; path = "Target Support Files/Pods-EasyDiet/Pods-EasyDiet.release.xcconfig"; sourceTree = "<group>"; };
+		9E36A323D50EEB4192742D74 /* Pods-EasyDiet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyDiet.debug.xcconfig"; path = "Target Support Files/Pods-EasyDiet/Pods-EasyDiet.debug.xcconfig"; sourceTree = "<group>"; };
+		DD04EC6CC489125D7D6BE5E9 /* Pods_EasyDiet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EasyDiet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +49,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F294BF2CFD0DBEA8188E46BE /* Pods_EasyDiet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F9F5FFDA6B6B4A7D76DE448 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DD04EC6CC489125D7D6BE5E9 /* Pods_EasyDiet.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		238A4F2326D7CFE80091819A = {
 			isa = PBXGroup;
 			children = (
 				238A4F2E26D7CFE90091819A /* EasyDiet */,
 				238A4F2D26D7CFE90091819A /* Products */,
+				78EED22526DFC198AA3DD381 /* Pods */,
+				0F9F5FFDA6B6B4A7D76DE448 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,9 +85,12 @@
 		238A4F2E26D7CFE90091819A /* EasyDiet */ = {
 			isa = PBXGroup;
 			children = (
+				239BC74C26D89E720044E9DE /* Extension */,
+				239BC74326D818D50044E9DE /* DataManager */,
+				238A4F4826D7D35F0091819A /* HomeTabModule */,
+				238A4F4626D7D1AE0091819A /* Model */,
 				238A4F2F26D7CFE90091819A /* AppDelegate.swift */,
 				238A4F3126D7CFE90091819A /* SceneDelegate.swift */,
-				238A4F3326D7CFE90091819A /* ViewController.swift */,
 				238A4F3526D7CFE90091819A /* Main.storyboard */,
 				238A4F3B26D7CFED0091819A /* Assets.xcassets */,
 				238A4F3D26D7CFED0091819A /* LaunchScreen.storyboard */,
@@ -70,6 +100,58 @@
 			path = EasyDiet;
 			sourceTree = "<group>";
 		};
+		238A4F4626D7D1AE0091819A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				239BC74F26D8A0310044E9DE /* Diary.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		238A4F4826D7D35F0091819A /* HomeTabModule */ = {
+			isa = PBXGroup;
+			children = (
+				238A4F4926D7D3990091819A /* ViewController */,
+			);
+			path = HomeTabModule;
+			sourceTree = "<group>";
+		};
+		238A4F4926D7D3990091819A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				238A4F4F26D7D8620091819A /* DetailTableViewController.swift */,
+				239BC75326D8D50D0044E9DE /* HomeTableViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		239BC74326D818D50044E9DE /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				239BC74426D819050044E9DE /* DataManager+DiaryEntity.swift */,
+				239BC74626D819210044E9DE /* DataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		239BC74C26D89E720044E9DE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				239BC74D26D89E870044E9DE /* Extension+Date.swift */,
+				239BC75126D8CD670044E9DE /* Extension+UITableViewController.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		78EED22526DFC198AA3DD381 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9E36A323D50EEB4192742D74 /* Pods-EasyDiet.debug.xcconfig */,
+				47CBDF2B4F43FF6EA4A43660 /* Pods-EasyDiet.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,9 +159,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 238A4F4326D7CFED0091819A /* Build configuration list for PBXNativeTarget "EasyDiet" */;
 			buildPhases = (
+				5CF9FE51CE8761BF65943E52 /* [CP] Check Pods Manifest.lock */,
 				238A4F2826D7CFE90091819A /* Sources */,
 				238A4F2926D7CFE90091819A /* Frameworks */,
 				238A4F2A26D7CFE90091819A /* Resources */,
+				A5699D1752E1B259E9E25C65 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,15 +219,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5CF9FE51CE8761BF65943E52 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EasyDiet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5699D1752E1B259E9E25C65 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EasyDiet/Pods-EasyDiet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EasyDiet/Pods-EasyDiet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EasyDiet/Pods-EasyDiet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		238A4F2826D7CFE90091819A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				238A4F3426D7CFE90091819A /* ViewController.swift in Sources */,
+				238A4F5026D7D8620091819A /* DetailTableViewController.swift in Sources */,
+				239BC74526D819050044E9DE /* DataManager+DiaryEntity.swift in Sources */,
 				238A4F3A26D7CFE90091819A /* EasyDiet.xcdatamodeld in Sources */,
+				239BC75226D8CD670044E9DE /* Extension+UITableViewController.swift in Sources */,
+				239BC75026D8A0310044E9DE /* Diary.swift in Sources */,
 				238A4F3026D7CFE90091819A /* AppDelegate.swift in Sources */,
+				239BC75426D8D50D0044E9DE /* HomeTableViewController.swift in Sources */,
+				239BC74726D819210044E9DE /* DataManager.swift in Sources */,
 				238A4F3226D7CFE90091819A /* SceneDelegate.swift in Sources */,
+				239BC74E26D89E870044E9DE /* Extension+Date.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +419,7 @@
 		};
 		238A4F4426D7CFED0091819A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E36A323D50EEB4192742D74 /* Pods-EasyDiet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -306,6 +439,7 @@
 		};
 		238A4F4526D7CFED0091819A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47CBDF2B4F43FF6EA4A43660 /* Pods-EasyDiet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
