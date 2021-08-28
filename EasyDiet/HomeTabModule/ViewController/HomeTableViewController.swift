@@ -96,7 +96,8 @@ class HomeTableViewController: UITableViewController {
         case true:
             print("아직 안설정한 날짜")
         case false:
-            vc.diary = diaries.first
+            let filteredDiaries = diaries.filter { $0.date == calendar.selectedDate }
+            vc.diary = filteredDiaries.first
         }
     }
     
@@ -224,6 +225,7 @@ class HomeTableViewController: UITableViewController {
 
 extension HomeTableViewController: FSCalendarDelegate {
     
+   
 
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         calendarHeaderLabel.text = calendar.currentPage.formatter
@@ -231,17 +233,16 @@ extension HomeTableViewController: FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
-        diaries.forEach {
-            if $0.date == calendar.selectedDate {
-                showAlert(title:  " 선택한 날짜인 \((calendar.selectedDate ?? Date()).sectionFormatter)에 \n 코어데이터에 등록한 날짜정보인 \(($0.date ?? Date()).sectionFormatter)가 등록되어 있습니다 \n 현재 저장되어 있는 모든 등록개체는 \(diaries.count)입니다")
-                print($0.memo!)
-                print($0.height)
-                weightLabel.text = "\($0.weight)"
-                heightLabel.text = "\($0.height)"
-            } else {
-                print("d")
-            }
+        let filteredDiaries = diaries.filter { $0.date == date } //MARK: 선택날짜에 저장되어 있는 데이터 추출
+        for diary in filteredDiaries {
+            weightLabel.text = "\(diary.weight)"
+            heightLabel.text = "\(diary.height)"
+            bmiLabel.text = bmiConverter(diary.weight, diary.height)
+            return
         }
+        weightLabel.text = "\(0)"
+        heightLabel.text = "\(0)"
+        bmiLabel.text = "\(0)"
         tableView.reloadData()
     }
 }
@@ -266,8 +267,8 @@ extension Float32 {
 }
 
 extension UITableViewController {
-    func showAlert(title: String) {
-        let alert = UIAlertController(title: "", message: title, preferredStyle: .alert)
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)

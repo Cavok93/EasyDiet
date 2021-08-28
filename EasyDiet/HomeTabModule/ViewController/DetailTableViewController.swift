@@ -34,13 +34,14 @@ class DetailTableViewController: UITableViewController {
         if diary == nil {
             DataManager.shared.createDiaryEntity(height: heightNum, weight: weightNum, memo: textViewStr, date: date  ,context: DataManager.shared.mainContext) {
                 NotificationCenter.default.post(name: Notification.Name.didInputData, object: nil)
-                self.showAlert(title: "데이터가 새로 추가됨")
+                self.showAlert(title: "데이터가 새로 추가됨", message: "")
                 self.dismiss(animated: true, completion: nil)
             }
         } else {
             DataManager.shared.updateDiaryEntity(context: DataManager.shared.mainContext, entity: diary ?? DiaryEntity(), height: heightNum, weight: weightNum, memo: textViewStr, date: date) {
                 NotificationCenter.default.post(name: Notification.Name.didInputData, object: nil)
-                self.showAlert(title: "데이터가 업데이트 됨")
+                self.showAlert(title: "데이터가 업데이트 됨", message: "")
+                
                 self.dismiss(animated: true, completion: nil)
             }
         }
