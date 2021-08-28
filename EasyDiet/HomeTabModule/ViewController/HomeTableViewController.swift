@@ -11,10 +11,16 @@ import FSCalendar
 
 class HomeTableViewController: UITableViewController {
     
-
-
+    
+    
     
     static let identifier = "CalendarCell"
+    
+    let defaultWeight: Float32 = 0.0
+    let defaultHeight: Float32 = 0.0
+    let defaultBmi: Float32 = 0.0
+    let defaultMemo: String = ""
+    
     
     
     enum State {
@@ -45,7 +51,7 @@ class HomeTableViewController: UITableViewController {
     private var currentPageDate: Date?
     
     
-
+    
     
     
     
@@ -89,16 +95,12 @@ class HomeTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print(#function)
-        
+        print(diaries.count)
         guard let navigationController = segue.destination as? UINavigationController, let vc = navigationController.children.first as? DetailTableViewController else { return }
         vc.date = calendar.selectedDate
-        switch weightLabel.text == "\(0)" {
-        case true:
-            print("아직 안설정한 날짜")
-        case false:
-            let filteredDiaries = diaries.filter { $0.date == calendar.selectedDate }
-            vc.diary = filteredDiaries.first
-        }
+        let filteredDiaries = diaries.filter { $0.date == calendar.selectedDate }
+        vc.diary = filteredDiaries.first
+        
     }
     
     @objc private func toPreviousMonth() {
@@ -181,13 +183,13 @@ class HomeTableViewController: UITableViewController {
             return nil
         }
     }
-
+    
     
     
     func bmiConverter(_ weight: Float32, _ height: Float32) -> String {
         let result = (weight / ((height / 100) * (height / 100)))
         if result.isNaN {
-            return "\(0)"
+            return "\(defaultBmi)"
         }
         return  result.numberFormat
     }
@@ -205,10 +207,10 @@ class HomeTableViewController: UITableViewController {
             guard let strongSelf = self else { return }
             strongSelf.diaries = DataManager.shared.fetchDiaryEntity(context: DataManager.shared.mainContext)
             let target = strongSelf.diaries.first
-            strongSelf.weightLabel.text = "\(target?.weight ?? 0)"
-            strongSelf.heightLabel.text = "\(target?.height ?? 0)"
-            strongSelf.memoLabel.text = target?.memo ?? ""
-            strongSelf.bmiLabel.text = strongSelf.bmiConverter(target?.weight ?? 0, target?.height ?? 0)
+            strongSelf.weightLabel.text = "\(target?.weight ?? strongSelf.defaultWeight)"
+            strongSelf.heightLabel.text = "\(target?.height ?? strongSelf.defaultHeight)"
+            strongSelf.memoLabel.text = target?.memo ?? strongSelf.defaultMemo
+            strongSelf.bmiLabel.text = strongSelf.bmiConverter(target?.weight ?? strongSelf.defaultWeight, target?.height ?? strongSelf.defaultHeight)
             strongSelf.tableView.reloadData()
             strongSelf.calendar.reloadData()
         }
@@ -225,8 +227,8 @@ class HomeTableViewController: UITableViewController {
 
 extension HomeTableViewController: FSCalendarDelegate {
     
-   
-
+    
+    
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         calendarHeaderLabel.text = calendar.currentPage.formatter
     }
@@ -240,9 +242,9 @@ extension HomeTableViewController: FSCalendarDelegate {
             bmiLabel.text = bmiConverter(diary.weight, diary.height)
             return
         }
-        weightLabel.text = "\(0)"
-        heightLabel.text = "\(0)"
-        bmiLabel.text = "\(0)"
+        weightLabel.text = "\(defaultWeight)"
+        heightLabel.text = "\(defaultHeight)"
+        bmiLabel.text = "\(defaultBmi)"
         tableView.reloadData()
     }
 }
