@@ -52,6 +52,7 @@ class HomeTableViewController: UITableViewController {
         dateComponents.month = isPrev ? -1 : 1
         self.currentPageDate = cal.date(byAdding: dateComponents, to: self.currentPageDate ?? Date())
         self.calendar.setCurrentPage(self.currentPageDate ?? Date(), animated: true)
+       
     }
     
     private func didSelectCalendarRow(_ calendar: FSCalendar) {
@@ -117,18 +118,26 @@ class HomeTableViewController: UITableViewController {
     }
     
     @objc private func toPreviousMonth() {
-        scrollCurrentPage(isPrev: true)
+        if currentPageDate ?? Date() < calendar.minimumDate {
+            scrollCurrentPage(isPrev: false)
+        } else {
+            scrollCurrentPage(isPrev: true)
+        }
     }
     
     @objc private func toNextMonth() {
-        scrollCurrentPage(isPrev: false)
+        if currentPageDate ?? Date() > calendar.maximumDate {
+            scrollCurrentPage(isPrev: true)
+        } else {
+            scrollCurrentPage(isPrev: false)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print(#function)
         print(diaries.count)
         guard let navigationController = segue.destination as? UINavigationController, let vc = navigationController.children.first as? DetailTableViewController else { return }
-        vc.date = calendar.selectedDate
+        vc.dateForTopTitle = calendar.selectedDate
         let filteredDiaries = diaries.filter { $0.date == calendar.selectedDate }
         vc.diary = filteredDiaries.first
     }
@@ -181,7 +190,7 @@ class HomeTableViewController: UITableViewController {
         calendar.layer.shadowOffset = CGSize(width: 0, height: 0)
         calendar.layer.cornerRadius = 12
         calendar.layer.shadowRadius = 12
-        calendar.layer.shadowOpacity = 0.1
+        calendar.layer.shadowOpacity = 0.15
         calendar.layer.masksToBounds = false
         calendar.layer.shadowPath = UIBezierPath(roundedRect: self.calendar.bounds, cornerRadius: calendar.layer.cornerRadius).cgPath
     }
@@ -198,12 +207,22 @@ class HomeTableViewController: UITableViewController {
         token = NotificationCenter.default.addObserver(forName: Notification.Name.didInputData, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             guard let strongSelf = self else { return }
             strongSelf.diaries = DataManager.shared.fetchDiaryEntity(context: DataManager.shared.mainContext)
+            
             let target = strongSelf.diaries.first
+            let secondTarget = strongSelf.diaries.last
+
+            for i in strongSelf.diaries {
+                print("코어데이터에 저장된 순서",i.weight)
+            }
+
             strongSelf.weightLabel.text = "\(target?.weight ?? strongSelf.defaultWeight)"
+//            print(strongSelf.weightLabel.text)
+//            print(strongSelf.heightLabel.text)
             strongSelf.heightLabel.text = "\(target?.height ?? strongSelf.defaultHeight)"
             strongSelf.memoLabel.text = target?.memo ?? strongSelf.defaultMemo
             strongSelf.bmiLabel.text = strongSelf.bmiConverter(target?.weight ?? strongSelf.defaultWeight, target?.height ?? strongSelf.defaultHeight)
-            strongSelf.tableView.reloadData()
+            let indexPath = IndexPath(item: 0, section: 1)
+            strongSelf.tableView.reloadRows(at: [indexPath], with: .none)
             strongSelf.calendar.reloadData()
             
             if Operation.shared.isSave == true {
@@ -229,11 +248,29 @@ class HomeTableViewController: UITableViewController {
 
 extension HomeTableViewController: FSCalendarDelegate {
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
+        print(calendar)
         calendarHeaderLabel.text = calendar.currentPage.formatter
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         didSelectCalendarRow(calendar)
+    }
+    func minimumDate(for calendar: FSCalendar) -> Date {
+        let minumunDate = Date()
+        let cal = Calendar.current
+        let dateComponents = DateComponents()
+        let targetDay = cal.date(byAdding: dateComponents, to: minumunDate)
+        guard let targetDay = targetDay else { return Date()}
+        return targetDay.addingTimeInterval( -2.year)
+        
+    }
+    func maximumDate(for calendar: FSCalendar) -> Date {
+        let maximumDate = Date()
+        let cal = Calendar.current
+        let dateComponents = DateComponents()
+        let targetDay = cal.date(byAdding: dateComponents, to: maximumDate)
+        guard let targetDay = targetDay else { return Date()}
+        return targetDay.addingTimeInterval( 2.year)
     }
 }
 

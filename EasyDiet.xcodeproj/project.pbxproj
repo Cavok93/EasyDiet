@@ -28,6 +28,7 @@
 		239BC76726DB53720044E9DE /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC76626DB53700044E9DE /* Extension+UIColor.swift */; };
 		239BC76B26DDC9DE0044E9DE /* CustomMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 239BC76A26DDC9DE0044E9DE /* CustomMarkerView.xib */; };
 		239BC76D26DDCA1D0044E9DE /* CustomMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC76C26DDCA1D0044E9DE /* CustomMarkerView.swift */; };
+		239BC76F26DE28F30044E9DE /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC76E26DE28F00044E9DE /* Extension+Int.swift */; };
 		F294BF2CFD0DBEA8188E46BE /* Pods_EasyDiet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD04EC6CC489125D7D6BE5E9 /* Pods_EasyDiet.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		239BC76626DB53700044E9DE /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 		239BC76A26DDC9DE0044E9DE /* CustomMarkerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomMarkerView.xib; sourceTree = "<group>"; };
 		239BC76C26DDCA1D0044E9DE /* CustomMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarkerView.swift; sourceTree = "<group>"; };
+		239BC76E26DE28F00044E9DE /* Extension+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
 		47CBDF2B4F43FF6EA4A43660 /* Pods-EasyDiet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyDiet.release.xcconfig"; path = "Target Support Files/Pods-EasyDiet/Pods-EasyDiet.release.xcconfig"; sourceTree = "<group>"; };
 		9E36A323D50EEB4192742D74 /* Pods-EasyDiet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyDiet.debug.xcconfig"; path = "Target Support Files/Pods-EasyDiet/Pods-EasyDiet.debug.xcconfig"; sourceTree = "<group>"; };
 		DD04EC6CC489125D7D6BE5E9 /* Pods_EasyDiet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EasyDiet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +155,7 @@
 				239BC75126D8CD670044E9DE /* Extension+UIViewController.swift */,
 				239BC75526DA21600044E9DE /* Extension+Float32.swift */,
 				239BC76626DB53700044E9DE /* Extension+UIColor.swift */,
+				239BC76E26DE28F00044E9DE /* Extension+Int.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				238A4F3026D7CFE90091819A /* AppDelegate.swift in Sources */,
 				239BC75426D8D50D0044E9DE /* HomeTableViewController.swift in Sources */,
 				239BC74726D819210044E9DE /* DataManager.swift in Sources */,
+				239BC76F26DE28F30044E9DE /* Extension+Int.swift in Sources */,
 				239BC76426DA46A60044E9DE /* GraphTableViewController.swift in Sources */,
 				238A4F3226D7CFE90091819A /* SceneDelegate.swift in Sources */,
 				239BC76D26DDCA1D0044E9DE /* CustomMarkerView.swift in Sources */,

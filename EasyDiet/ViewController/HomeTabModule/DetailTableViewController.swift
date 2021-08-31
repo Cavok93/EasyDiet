@@ -17,23 +17,23 @@ class DetailTableViewController: UITableViewController {
     
     static let identifier = "DetailTableViewController"
     var diary: DiaryEntity?
-    var date: Date?
+    var dateForTopTitle: Date?
     @IBOutlet weak var heightField: UITextField!
     @IBOutlet weak var weightField: UITextField!
     @IBOutlet weak var listTextView: UITextView!
     
     @IBAction func saveContents(_ sender: Any) {
-        guard let date = date  else { fatalError() }
+        guard let sortedByCalendarDate = dateForTopTitle  else { fatalError() }
         guard let heightStr = heightField.text, heightStr.count > 0, let heightNum = Float32(heightStr) else { return }
         guard let weightStr = weightField.text, weightStr.count > 0, let weightNum = Float32(weightStr)else { return }
         guard let textViewStr = listTextView.text, textViewStr.count > 0 else { return }
         if diary == nil  {
-            DataManager.shared.createDiaryEntity(height: heightNum, weight: weightNum, memo: textViewStr, date: date  ,context: DataManager.shared.mainContext) {
+            DataManager.shared.createDiaryEntity(height: heightNum, weight: weightNum, memo: textViewStr, date: sortedByCalendarDate  ,context: DataManager.shared.mainContext) {
                 Operation.shared.isSave = true
                 NotificationCenter.default.post(name: Notification.Name.didInputData, object: nil)
             }
         } else {
-            DataManager.shared.updateDiaryEntity(context: DataManager.shared.mainContext, entity: diary ?? DiaryEntity(), height: heightNum, weight: weightNum, memo: textViewStr, date: date) {
+            DataManager.shared.updateDiaryEntity(context: DataManager.shared.mainContext, entity: diary ?? DiaryEntity(), height: heightNum, weight: weightNum, memo: textViewStr, date: sortedByCalendarDate) {
                 Operation.shared.isSave = false
                 NotificationCenter.default.post(name: Notification.Name.didInputData, object: nil)
             }
@@ -99,7 +99,7 @@ class DetailTableViewController: UITableViewController {
         } else {
             print("새로 저장하는 작업")
         }
-        self.navigationController?.navigationBar.topItem?.title = date?.sectionFormatter
+        self.navigationController?.navigationBar.topItem?.title = dateForTopTitle?.sectionFormatter
         configureUI()
         heightField.becomeFirstResponder()
         self.setupHideKeyboardOnTap()

@@ -198,7 +198,7 @@
             <objects>
                 <tableViewController id="K1y-nS-JUQ" customClass="GraphTableViewController" customModule="EasyDiet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="pBE-cf-K7B">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <sections>
                             <tableViewSection id="WYj-8t-ghs">
@@ -211,8 +211,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6P-6s-aTv">
-                                                    <rect key="frame" x="20" y="11" width="39" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                    <rect key="frame" x="20" y="11" width="41.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -246,8 +246,43 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="76" id="Quc-Uv-GV1">
+                                        <rect key="frame" x="0.0" y="651.5" width="414" height="76"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Quc-Uv-GV1" id="fEC-KZ-ayn">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="76"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3q-au-2OH">
+                                                    <rect key="frame" x="20" y="11" width="374" height="44"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swt-A8-aBU">
+                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="Oaw-2I-cBc"/>
+                                                        <constraint firstAttribute="bottom" secondItem="swt-A8-aBU" secondAttribute="bottom" id="a8X-pe-ZxF"/>
+                                                        <constraint firstAttribute="trailing" secondItem="swt-A8-aBU" secondAttribute="trailing" id="aNj-gT-uRz"/>
+                                                        <constraint firstItem="swt-A8-aBU" firstAttribute="top" secondItem="b3q-au-2OH" secondAttribute="top" id="oyW-O8-ZNn"/>
+                                                        <constraint firstItem="swt-A8-aBU" firstAttribute="leading" secondItem="b3q-au-2OH" secondAttribute="leading" id="uiP-5R-lDl"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="b3q-au-2OH" firstAttribute="leading" secondItem="fEC-KZ-ayn" secondAttribute="leadingMargin" id="Hec-Jx-zrd"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="b3q-au-2OH" secondAttribute="bottom" id="RBr-f3-PTy"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="b3q-au-2OH" secondAttribute="trailing" id="TdU-yP-tZl"/>
+                                                <constraint firstItem="b3q-au-2OH" firstAttribute="top" secondItem="fEC-KZ-ayn" secondAttribute="topMargin" id="iXe-he-cS1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="78" id="xWS-mn-mUa">
-                                        <rect key="frame" x="0.0" y="651.5" width="414" height="78"/>
+                                        <rect key="frame" x="0.0" y="727.5" width="414" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xWS-mn-mUa" id="B7o-2f-FjD">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="78"/>
@@ -284,16 +319,26 @@
                             <outlet property="delegate" destination="K1y-nS-JUQ" id="sn3-iS-8PN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="그래프" id="eS7-Dg-oRO"/>
+                    <navigationItem key="navigationItem" title="그래프" id="eS7-Dg-oRO">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="boX-PI-OBe">
+                            <connections>
+                                <action selector="saveGoalWeight:" destination="K1y-nS-JUQ" id="8bg-8p-AO0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <size key="freeformSize" width="414" height="1300"/>
                     <connections>
                         <outlet property="currentDatLabel" destination="h6P-6s-aTv" id="hP4-4T-fko"/>
                         <outlet property="dateSementControl" destination="veA-3A-MHs" id="oxV-sh-pFh"/>
+                        <outlet property="goalWeightSettingButton" destination="boX-PI-OBe" id="vzy-J4-se1"/>
                         <outlet property="lineChartView" destination="9gh-3t-HOC" id="0Ox-gO-JrJ"/>
+                        <outlet property="monthLabel" destination="swt-A8-aBU" id="sKG-em-5bR"/>
+                        <outlet property="monthView" destination="b3q-au-2OH" id="8cN-1A-K91"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jrT-vI-Q6b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2090" y="216"/>
+            <point key="canvasLocation" x="2089.8550724637685" y="215.625"/>
         </scene>
         <!--달력-->
         <scene sceneID="2Ul-m2-2gn">
