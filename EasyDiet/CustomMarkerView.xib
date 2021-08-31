@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomMarkerView" customModule="EasyDiet" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="SNP-NZ-N4f" id="HUI-6S-Ice"/>
+                <outlet property="weightLabel" destination="m4g-rN-Zxc" id="BDc-Nn-G9E"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="229" height="163"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SNP-NZ-N4f">
+                    <rect key="frame" x="16" y="44" width="197" height="119"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4g-rN-Zxc">
+                            <rect key="frame" x="0.0" y="0.0" width="197" height="119"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGray5Color"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="m4g-rN-Zxc" secondAttribute="bottom" id="2Kc-oW-j9F"/>
+                        <constraint firstItem="m4g-rN-Zxc" firstAttribute="leading" secondItem="SNP-NZ-N4f" secondAttribute="leading" id="LYJ-F6-KHn"/>
+                        <constraint firstItem="m4g-rN-Zxc" firstAttribute="top" secondItem="SNP-NZ-N4f" secondAttribute="top" id="QQG-cV-0RI"/>
+                        <constraint firstAttribute="trailing" secondItem="m4g-rN-Zxc" secondAttribute="trailing" id="xuW-8k-smI"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="SNP-NZ-N4f" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="3Cd-O2-DhS"/>
+                <constraint firstAttribute="trailingMargin" secondItem="SNP-NZ-N4f" secondAttribute="trailing" id="B5N-FZ-97p"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="SNP-NZ-N4f" secondAttribute="bottom" id="Jsv-ZP-FUv"/>
+                <constraint firstItem="SNP-NZ-N4f" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="u6x-W7-yki"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-2.1739130434782612" y="-193.86160714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

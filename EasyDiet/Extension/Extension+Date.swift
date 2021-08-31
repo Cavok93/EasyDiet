@@ -25,4 +25,15 @@ extension Date {
         return formatter.string(from: self)
         
     }
+    
+    var getDay: Double {
+        let calendar = Calendar.current.dateComponents([.day], from: self).day ?? 0
+        return Double(calendar)
+    }
+    
+    
+    
+    
+    
+    
 }

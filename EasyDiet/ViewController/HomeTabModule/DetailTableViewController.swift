@@ -18,40 +18,28 @@ class DetailTableViewController: UITableViewController {
     static let identifier = "DetailTableViewController"
     var diary: DiaryEntity?
     var date: Date?
-    
     @IBOutlet weak var heightField: UITextField!
     @IBOutlet weak var weightField: UITextField!
-    
     @IBOutlet weak var listTextView: UITextView!
-    
-    
     
     @IBAction func saveContents(_ sender: Any) {
         guard let date = date  else { fatalError() }
         guard let heightStr = heightField.text, heightStr.count > 0, let heightNum = Float32(heightStr) else { return }
         guard let weightStr = weightField.text, weightStr.count > 0, let weightNum = Float32(weightStr)else { return }
         guard let textViewStr = listTextView.text, textViewStr.count > 0 else { return }
-        if diary == nil {
+        if diary == nil  {
             DataManager.shared.createDiaryEntity(height: heightNum, weight: weightNum, memo: textViewStr, date: date  ,context: DataManager.shared.mainContext) {
+                Operation.shared.isSave = true
                 NotificationCenter.default.post(name: Notification.Name.didInputData, object: nil)
-                self.showAlert(title: "데이터가 새로 추가됨", message: "")
-                self.dismiss(animated: true, completion: nil)
             }
         } else {
             DataManager.shared.updateDiaryEntity(context: DataManager.shared.mainContext, entity: diary ?? DiaryEntity(), height: heightNum, weight: weightNum, memo: textViewStr, date: date) {
+                Operation.shared.isSave = false
                 NotificationCenter.default.post(name: Notification.Name.didInputData, object: nil)
-                self.showAlert(title: "데이터가 업데이트 됨", message: "")
-                
-                self.dismiss(animated: true, completion: nil)
             }
         }
-    }
-    
-    @IBAction func cancelContents(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
     
     func configureUI() {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -68,22 +56,49 @@ class DetailTableViewController: UITableViewController {
         }
     }
     
-    @objc func dismissKeyboard() {
-        heightField.resignFirstResponder()
-        weightField.resignFirstResponder()
-        listTextView.resignFirstResponder()
+    @IBAction func cancelContents(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
+    @objc func dismissKeyboard() {
+        if heightField.isFirstResponder {
+            heightField.resignFirstResponder()
+            weightField.becomeFirstResponder()
+        } else if weightField.isFirstResponder {
+            weightField.resignFirstResponder()
+            listTextView.becomeFirstResponder()
+        } else {
+            listTextView.resignFirstResponder()
+        }
+    }
     
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.selectionStyle = .none
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 2 {
+            return 200.0
+        } else {
+            return tableView.estimatedRowHeight
+            
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if let diary = diary  {
+            print("수정작업")
             heightField.text = "\(diary.height)"
             weightField.text = "\(diary.weight)"
             listTextView.text = diary.memo
+        } else {
+            print("새로 저장하는 작업")
         }
-        
         self.navigationController?.navigationBar.topItem?.title = date?.sectionFormatter
         configureUI()
         heightField.becomeFirstResponder()
@@ -98,40 +113,18 @@ class DetailTableViewController: UITableViewController {
         heightField.inputAccessoryView = toolBar
         weightField.inputAccessoryView = toolBar
         listTextView.inputAccessoryView = toolBar
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        listTextView.layer.cornerRadius = 5
+        listTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.6).cgColor
+        listTextView.layer.borderWidth = 0.5
+        listTextView.clipsToBounds = true
         
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.selectionStyle = .none
-    }
-    
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 2 {
-            return 200.0
-        } else {
-            return tableView.estimatedRowHeight
-            
-        }
-    }
-    
-    
 }
+
 extension DetailTableViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
@@ -139,7 +132,6 @@ extension DetailTableViewController: UITextViewDelegate {
             textView.textColor = UIColor.black
         }
     }
-    
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
@@ -156,13 +148,12 @@ extension DetailTableViewController: UITextViewDelegate {
     }
 }
 
-
 extension DetailTableViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let nsStr = textField.text as NSString? else {  return false }
         let finalText = nsStr.replacingCharacters(in: range, with: string)
         if finalText.hasPrefix(" ") { return false }
-        if let finalInt = Int16(finalText), finalInt > 300 { return false}
+        if let finalInt = Int16(finalText), finalInt > 250 { return false}
         if finalText.count > 5 { return false}
         return true
     }
