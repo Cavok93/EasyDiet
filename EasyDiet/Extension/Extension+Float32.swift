@@ -9,9 +9,16 @@ import Foundation
 
 
 extension Float32 {
-    var numberFormat: String {
+    var numberFormatter: String {
         let str = String(format: "%.2f", self)
         return str
+    }
+    
+    var decimalFormatter: String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.positivePrefix = "+"
+        return numberFormatter.string(from: NSNumber(value: self)) ?? ""
     }
 }
 

@@ -20,6 +20,8 @@ class HomeTableViewController: UITableViewController {
     private var token:  NSObjectProtocol?
     private var diaries = [DiaryEntity]()
     
+    
+    @IBOutlet weak var todayBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var calendarBackButton: UIButton!
     @IBOutlet weak var calendarNextButton: UIButton!
@@ -63,7 +65,7 @@ class HomeTableViewController: UITableViewController {
         if result.isNaN {
             return "\(defaultBmi)"
         }
-        return  result.numberFormat
+        return  result.numberFormatter
     }
     
     private func configureCalendar() {
@@ -91,6 +93,11 @@ class HomeTableViewController: UITableViewController {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
+    @objc private func setToday() {
+        calendar.select(Date())
+        currentPageDate = Date()
+    }
+    
     @objc private func changeNumberOfMemoLabelLine() {
         memoLabel.numberOfLines = memoLabel.numberOfLines == 3 ? 0 : 3
         switch memoLabel.numberOfLines {
@@ -106,7 +113,7 @@ class HomeTableViewController: UITableViewController {
     
     @objc private func toPreviousMonth() {
         if currentPageDate ?? Date() < calendar.minimumDate {
-            scrollCurrentPage(isPrev: false)
+            return
         } else {
             scrollCurrentPage(isPrev: true)
         }
@@ -114,7 +121,7 @@ class HomeTableViewController: UITableViewController {
     
     @objc private func toNextMonth() {
         if currentPageDate ?? Date() > calendar.maximumDate {
-            scrollCurrentPage(isPrev: true)
+            return 
         } else {
             scrollCurrentPage(isPrev: false)
         }
@@ -177,7 +184,7 @@ class HomeTableViewController: UITableViewController {
         calendar.layer.shadowOffset = CGSize(width: 0, height: 0)
         calendar.layer.cornerRadius = 12
         calendar.layer.shadowRadius = 12
-        calendar.layer.shadowOpacity = 0.1
+        calendar.layer.shadowOpacity = 0.13
         calendar.layer.masksToBounds = false
         calendar.layer.shadowPath = UIBezierPath(roundedRect: self.calendar.bounds, cornerRadius: calendar.layer.cornerRadius).cgPath
         
@@ -185,7 +192,7 @@ class HomeTableViewController: UITableViewController {
         dateControlStackView.layer.shadowOffset = CGSize(width: 0, height: 0)
         dateControlStackView.layer.cornerRadius = 12
         dateControlStackView.layer.shadowRadius = 12
-        dateControlStackView.layer.shadowOpacity = 0.1
+        dateControlStackView.layer.shadowOpacity = 0.13
         dateControlStackView.layer.masksToBounds = false
         dateControlStackView.layer.shadowPath = UIBezierPath(roundedRect: self.dateControlStackView.bounds, cornerRadius: dateControlStackView.layer.cornerRadius).cgPath
         
@@ -193,7 +200,7 @@ class HomeTableViewController: UITableViewController {
         currentInformationView.layer.shadowOffset = CGSize(width: 0, height: 0)
         currentInformationView.layer.cornerRadius = 12
         currentInformationView.layer.shadowRadius = 12
-        currentInformationView.layer.shadowOpacity = 0.1
+        currentInformationView.layer.shadowOpacity = 0.13
         currentInformationView.layer.masksToBounds = false
         currentInformationView.layer.shadowPath = UIBezierPath(roundedRect: self.currentInformationView.bounds, cornerRadius: currentInformationView.layer.cornerRadius).cgPath
         
@@ -210,14 +217,13 @@ class HomeTableViewController: UITableViewController {
         diaries = DataManager.shared.fetchDiaryEntity(context: DataManager.shared.mainContext)
         token = NotificationCenter.default.addObserver(forName: Notification.Name.didInputData, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             guard let strongSelf = self else { return }
-            strongSelf.diaries = DataManager.shared.fetchDiaryEntity(context: DataManager.shared.mainContext)
-            strongSelf.weightLabel.text = "\(Operation.shared.weight ?? strongSelf.defaultWeight)"
-            strongSelf.heightLabel.text = "\(Operation.shared.height ?? strongSelf.defaultHeight)"
-            strongSelf.memoLabel.text = Operation.shared.memo ?? strongSelf.defaultMemo
-            strongSelf.bmiLabel.text = strongSelf.bmiConverter(Operation.shared.weight ?? strongSelf.defaultWeight, Operation.shared.height ?? strongSelf.defaultHeight)
+            strongSelf.diaries = DataManager.shared.fetchDiaryEntityByOrderBasedDate(context: DataManager.shared.mainContext)
+            strongSelf.weightLabel.text = "\(strongSelf.diaries.first?.weight ?? strongSelf.defaultWeight)"
+            strongSelf.heightLabel.text = "\(strongSelf.diaries.first?.height ?? strongSelf.defaultHeight)"
+            strongSelf.memoLabel.text = strongSelf.diaries.first?.memo ?? strongSelf.defaultMemo
+            strongSelf.bmiLabel.text = strongSelf.bmiConverter(strongSelf.diaries.first?.weight ?? strongSelf.defaultWeight , strongSelf.diaries.first?.height ?? strongSelf.defaultHeight)
             strongSelf.calendar.reloadData()
             strongSelf.tableView.reloadData()
-            
             if Operation.shared.isSave == true {
                 strongSelf.showToast(message: "저장되었습니다.")
             } else if Operation.shared.isSave == false {
@@ -226,6 +232,7 @@ class HomeTableViewController: UITableViewController {
                 strongSelf.showToast(message: "삭제되었습니다.")
             }
         }
+        todayBarButtonItem.addTargetForAction(target: self, action: #selector(setToday))
         seeMoreButton.addTarget(self, action: #selector(changeNumberOfMemoLabelLine), for: .touchUpInside)
         calendarBackButton.addTarget(self, action: #selector(toPreviousMonth), for: .touchUpInside)
         calendarNextButton.addTarget(self, action: #selector(toNextMonth), for: .touchUpInside)
