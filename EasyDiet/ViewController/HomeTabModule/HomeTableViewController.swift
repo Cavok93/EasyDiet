@@ -10,23 +10,7 @@ import FSCalendar
 
 
 class HomeTableViewController: UITableViewController {
-    enum State {
-        case expand
-        case shrink
-        var selectState: UIImage {
-            switch self {
-            case .expand:
-                let config = UIImage.SymbolConfiguration(pointSize: 10.0)
-                let image = UIImage(systemName: "", withConfiguration: config)
-                return image ?? UIImage()
-            case .shrink:
-                let config = UIImage.SymbolConfiguration(pointSize: 10.0)
-                let image = UIImage(systemName: "chevron.down", withConfiguration: config)
-                return image ?? UIImage()
-            }
-        }
-    }
-    
+
     static let identifier = "CalendarCell"
     private let defaultWeight: Float32 = 0.0
     private let defaultHeight: Float32 = 0.0
@@ -36,6 +20,7 @@ class HomeTableViewController: UITableViewController {
     private var token:  NSObjectProtocol?
     private var diaries = [DiaryEntity]()
     
+    @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var calendarBackButton: UIButton!
     @IBOutlet weak var calendarNextButton: UIButton!
     @IBOutlet weak var calendarHeaderLabel: UILabel!
@@ -44,7 +29,8 @@ class HomeTableViewController: UITableViewController {
     @IBOutlet weak var bmiLabel: UILabel!
     @IBOutlet weak var memoLabel: UILabel!
     @IBOutlet weak var seeMoreButton: UIButton!
-    @IBOutlet weak var calendar: FSCalendar!
+    @IBOutlet weak var currentInformationView: UIView!
+    @IBOutlet weak var dateControlStackView: UIStackView!
     
     private func scrollCurrentPage(isPrev: Bool) {
         let cal = Calendar.current
@@ -52,20 +38,23 @@ class HomeTableViewController: UITableViewController {
         dateComponents.month = isPrev ? -1 : 1
         self.currentPageDate = cal.date(byAdding: dateComponents, to: self.currentPageDate ?? Date())
         self.calendar.setCurrentPage(self.currentPageDate ?? Date(), animated: true)
-       
     }
     
     private func didSelectCalendarRow(_ calendar: FSCalendar) {
         let filteredDiaries = diaries.filter { $0.date == calendar.selectedDate } //MARK: 선택날짜에 저장되어 있는 데이터 추출
-        for diary in filteredDiaries {
-            weightLabel.text = "\(diary.weight)"
-            heightLabel.text = "\(diary.height)"
-            bmiLabel.text = bmiConverter(diary.weight, diary.height)
-            return
+        if filteredDiaries.isEmpty {
+            weightLabel.text = "\(defaultWeight)"
+            heightLabel.text = "\(defaultHeight)"
+            memoLabel.text = defaultMemo
+            bmiLabel.text = "\(defaultBmi)"
+        } else {
+            for diary in filteredDiaries {
+                weightLabel.text = "\(diary.weight)"
+                heightLabel.text = "\(diary.height)"
+                memoLabel.text = diary.memo
+                bmiLabel.text = bmiConverter(diary.weight, diary.height)
+            }
         }
-        weightLabel.text = "\(defaultWeight)"
-        heightLabel.text = "\(defaultHeight)"
-        bmiLabel.text = "\(defaultBmi)"
         tableView.reloadData()
     }
     
@@ -107,10 +96,8 @@ class HomeTableViewController: UITableViewController {
         switch memoLabel.numberOfLines {
         case 3:
             seeMoreButton.setTitle("더보기", for: .normal)
-            seeMoreButton.setImage(State.shrink.selectState, for: .normal)
         case 0:
             seeMoreButton.setTitle("접기", for: .normal)
-            seeMoreButton.setImage(State.expand.selectState, for: .normal)
         default:
             return
         }
@@ -190,14 +177,31 @@ class HomeTableViewController: UITableViewController {
         calendar.layer.shadowOffset = CGSize(width: 0, height: 0)
         calendar.layer.cornerRadius = 12
         calendar.layer.shadowRadius = 12
-        calendar.layer.shadowOpacity = 0.15
+        calendar.layer.shadowOpacity = 0.1
         calendar.layer.masksToBounds = false
         calendar.layer.shadowPath = UIBezierPath(roundedRect: self.calendar.bounds, cornerRadius: calendar.layer.cornerRadius).cgPath
+        
+        dateControlStackView.layer.shadowColor = UIColor.black.cgColor
+        dateControlStackView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        dateControlStackView.layer.cornerRadius = 12
+        dateControlStackView.layer.shadowRadius = 12
+        dateControlStackView.layer.shadowOpacity = 0.1
+        dateControlStackView.layer.masksToBounds = false
+        dateControlStackView.layer.shadowPath = UIBezierPath(roundedRect: self.dateControlStackView.bounds, cornerRadius: dateControlStackView.layer.cornerRadius).cgPath
+        
+        currentInformationView.layer.shadowColor = UIColor.black.cgColor
+        currentInformationView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        currentInformationView.layer.cornerRadius = 12
+        currentInformationView.layer.shadowRadius = 12
+        currentInformationView.layer.shadowOpacity = 0.1
+        currentInformationView.layer.masksToBounds = false
+        currentInformationView.layer.shadowPath = UIBezierPath(roundedRect: self.currentInformationView.bounds, cornerRadius: currentInformationView.layer.cornerRadius).cgPath
+        
+     
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-    }
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCalendar()
@@ -207,23 +211,12 @@ class HomeTableViewController: UITableViewController {
         token = NotificationCenter.default.addObserver(forName: Notification.Name.didInputData, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             guard let strongSelf = self else { return }
             strongSelf.diaries = DataManager.shared.fetchDiaryEntity(context: DataManager.shared.mainContext)
-            
-            let target = strongSelf.diaries.first
-            let secondTarget = strongSelf.diaries.last
-
-            for i in strongSelf.diaries {
-                print("코어데이터에 저장된 순서",i.weight)
-            }
-
-            strongSelf.weightLabel.text = "\(target?.weight ?? strongSelf.defaultWeight)"
-//            print(strongSelf.weightLabel.text)
-//            print(strongSelf.heightLabel.text)
-            strongSelf.heightLabel.text = "\(target?.height ?? strongSelf.defaultHeight)"
-            strongSelf.memoLabel.text = target?.memo ?? strongSelf.defaultMemo
-            strongSelf.bmiLabel.text = strongSelf.bmiConverter(target?.weight ?? strongSelf.defaultWeight, target?.height ?? strongSelf.defaultHeight)
-            let indexPath = IndexPath(item: 0, section: 1)
-            strongSelf.tableView.reloadRows(at: [indexPath], with: .none)
+            strongSelf.weightLabel.text = "\(Operation.shared.weight ?? strongSelf.defaultWeight)"
+            strongSelf.heightLabel.text = "\(Operation.shared.height ?? strongSelf.defaultHeight)"
+            strongSelf.memoLabel.text = Operation.shared.memo ?? strongSelf.defaultMemo
+            strongSelf.bmiLabel.text = strongSelf.bmiConverter(Operation.shared.weight ?? strongSelf.defaultWeight, Operation.shared.height ?? strongSelf.defaultHeight)
             strongSelf.calendar.reloadData()
+            strongSelf.tableView.reloadData()
             
             if Operation.shared.isSave == true {
                 strongSelf.showToast(message: "저장되었습니다.")

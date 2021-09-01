@@ -21,7 +21,6 @@
 		239BC75226D8CD670044E9DE /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC75126D8CD670044E9DE /* Extension+UIViewController.swift */; };
 		239BC75426D8D50D0044E9DE /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC75326D8D50D0044E9DE /* HomeTableViewController.swift */; };
 		239BC75626DA21610044E9DE /* Extension+Float32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC75526DA21600044E9DE /* Extension+Float32.swift */; };
-		239BC75826DA2E8D0044E9DE /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC75726DA2E8D0044E9DE /* CustomTabBarController.swift */; };
 		239BC75C26DA31FA0044E9DE /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC75B26DA31FA0044E9DE /* MoreTableViewController.swift */; };
 		239BC75F26DA394B0044E9DE /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC75E26DA394B0044E9DE /* Operation.swift */; };
 		239BC76426DA46A60044E9DE /* GraphTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC76326DA46A60044E9DE /* GraphTableViewController.swift */; };
@@ -49,7 +48,6 @@
 		239BC75126D8CD670044E9DE /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		239BC75326D8D50D0044E9DE /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		239BC75526DA21600044E9DE /* Extension+Float32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Float32.swift"; sourceTree = "<group>"; };
-		239BC75726DA2E8D0044E9DE /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		239BC75B26DA31FA0044E9DE /* MoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableViewController.swift; sourceTree = "<group>"; };
 		239BC75E26DA394B0044E9DE /* Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 		239BC76326DA46A60044E9DE /* GraphTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTableViewController.swift; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 			children = (
 				238A4F4F26D7D8620091819A /* DetailTableViewController.swift */,
 				239BC75326D8D50D0044E9DE /* HomeTableViewController.swift */,
-				239BC75726DA2E8D0044E9DE /* CustomTabBarController.swift */,
 			);
 			path = HomeTabModule;
 			sourceTree = "<group>";
@@ -320,7 +317,6 @@
 			files = (
 				239BC75626DA21610044E9DE /* Extension+Float32.swift in Sources */,
 				238A4F5026D7D8620091819A /* DetailTableViewController.swift in Sources */,
-				239BC75826DA2E8D0044E9DE /* CustomTabBarController.swift in Sources */,
 				239BC74526D819050044E9DE /* DataManager+DiaryEntity.swift in Sources */,
 				238A4F3A26D7CFE90091819A /* EasyDiet.xcdatamodeld in Sources */,
 				239BC75226D8CD670044E9DE /* Extension+UIViewController.swift in Sources */,

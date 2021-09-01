@@ -25,7 +25,6 @@ class GraphTableViewController: UITableViewController {
     @IBOutlet weak var goalWeightSettingButton: UIBarButtonItem!
     @IBOutlet weak var monthView: UIView!
     @IBOutlet weak var monthLabel: UILabel!
-    @IBOutlet weak var currentDatLabel: UILabel!
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var dateSementControl: UISegmentedControl!
     
@@ -41,32 +40,25 @@ class GraphTableViewController: UITableViewController {
         lineChartView.leftAxis.labelPosition = .outsideChart
         lineChartView.leftAxis.drawGridLinesEnabled = false
         
-//
-//        xAxis.drawAxisLineEnabled = true
-//        xAxis.drawGridLinesEnabled = true
-//        xAxis.granularityEnabled = true
-        
-    
+        lineChartView.xAxis.granularity = 1.0
+        lineChartView.xAxis.granularityEnabled = true
         lineChartView.xAxis.drawGridLinesEnabled = false
-        lineChartView.xAxis.setLabelCount(9, force: false)
+        lineChartView.xAxis.setLabelCount(9, force: true)
         lineChartView.xAxis.labelFont = .boldSystemFont(ofSize: 12)
         lineChartView.xAxis.labelTextColor = .black
         lineChartView.xAxis.axisLineColor = .systemBlue
         lineChartView.xAxis.labelPosition = .bottom
-        
-        
         
         customMarkerView = CustomMarkerView()
         customMarkerView?.chartView = lineChartView
         lineChartView.marker = customMarkerView
         
         let today = Date()
-        monthLabel.text = "\(today.month)월"
-        currentDatLabel.text = today.sectionFormatter
+        monthLabel.text = today.sectionFormatter
     }
   
     
-    private func setData(_ yValues: [ChartDataEntry], formatter: String, marginDate: Double) {
+    private func setData(_ yValues: [ChartDataEntry], formatter: String, marginDate: Double, isHighlited: Bool) {
         var result = yValues
         var referenceTimeInterval: TimeInterval = 0
         if let minTimeInterval = (diaries.map { $0.date?.timeIntervalSince1970 ?? 0.0 }).min() {
@@ -86,35 +78,17 @@ class GraphTableViewController: UITableViewController {
             return  ChartDataEntry(x: ((diary.date?.timeIntervalSince1970 ?? 0.0) - referenceTimeInterval) / (3600.0 * 24.0) , y:  Double(diary.weight))
         }
         
-        
-//
-//        for i in result {
-//            print("X축의 값",i.x)
-//        }
-//        for i in  diaries {
-//            print("위의 값의 시간", i.date)
-//        }
-//
         let maxY = diaries.max { $0.weight < $1.weight }
         let yAxis = lineChartView.leftAxis
         yAxis.axisMaximum = Double(maxY?.weight ?? 0.0) + Double(20.0)
         yAxis.axisMinimum = 0.0
-        
-//        let sortedByMaxXEntry = result.max {  $0.x < $1.x }
-//        print(sortedByMaxXEntry)
         
         let maxX = result.last?.x ?? 0.0
         let minX = result.first?.x ?? 0.0
         let xAxis = lineChartView.xAxis
         xAxis.axisMaximum = maxX + marginDate
         xAxis.axisMinimum = minX - marginDate
-//        xAxis.axisMaximum =
-//        xAxis.axisMinimum =
-//        print("맥시멈",lineChartView.xAxis.axisMaximum)
-//        print("미니멈",lineChartView.xAxis.axisMinimum)
-//
-//
-        
+
         dataSet = LineChartDataSet(entries: result, label: "몸무게")
         dataSet?.mode = .linear
         dataSet?.lineWidth = 4
@@ -128,6 +102,11 @@ class GraphTableViewController: UITableViewController {
         let data = LineChartData(dataSet: dataSet)
         data.setDrawValues(false)
         lineChartView.data = data
+        if isHighlited == true {
+            let hightlight = Highlight(x: maxX, y: 0, dataSetIndex: 0)
+            lineChartView.highlightValue(hightlight)
+            customMarkerView?.weightLabel.text = "\(diaries.last?.weight ?? 0.0)"
+        }
         if let goalWeightValue = UserDefaults.standard.object(forKey: goalKey) as? Double {
             if goalWeightValue > lineChartView.leftAxis.axisMaximum {
                 lineChartView.leftAxis.axisMaximum = goalWeightValue + Double(20)
@@ -190,10 +169,10 @@ class GraphTableViewController: UITableViewController {
       
         switch sender.selectedSegmentIndex {
         case 0:
-             
-            setData(entries, formatter: "d일" , marginDate: 7)
-            lineChartView.zoom(scaleX: 0, scaleY: 0, x: 0, y: 0)
-//            lineChartView.zoom(scaleX: -7 , scaleY: 0, x: 0, y: 0)
+            setData(entries, formatter: "d일" , marginDate: 7, isHighlited: false)
+            print(lineChartView.scaleX)
+            
+            
             
             
 
@@ -202,45 +181,46 @@ class GraphTableViewController: UITableViewController {
             print("1주")
         case 1:
             
-            setData(entries, formatter: "M월", marginDate: 30)
+            setData(entries, formatter: "M월", marginDate: 30, isHighlited: false)
             
-            lineChartView.zoom(scaleX: 0, scaleY: 0, x: 0, y: 0)
-//            lineChartView.zoom(scaleX: 30, scaleY: 0, x: 0, y: 0)
+            
+            print(lineChartView.scaleX)
+
             lineChartView.data?.notifyDataChanged()
             lineChartView.notifyDataSetChanged()
             print("1달")
         case 2:
-            setData(entries, formatter: "M월", marginDate: 90)
-            lineChartView.zoom(scaleX: 0, scaleY: 0, x: 0, y: 0)
-//            lineChartView.zoom(scaleX: 13 - (0.15 * 4 * 3), scaleY: 0, x: 0, y: 0)
+            setData(entries, formatter: "M월", marginDate: 90, isHighlited: false)
             
+
+            print(lineChartView.scaleX)
             
             
             lineChartView.data?.notifyDataChanged()
             lineChartView.notifyDataSetChanged()
             print("3개월")
         case 3:
-            setData(entries, formatter: "M월", marginDate: 180)
-            lineChartView.zoom(scaleX: 0, scaleY: 0, x: 0, y: 0)
-//            lineChartView.zoom(scaleX: 13 - (0.15 * 4 * 6), scaleY: 0, x: 0, y: 0)
+            setData(entries, formatter: "M월", marginDate: 180, isHighlited: false)
+            
+
             
             
             lineChartView.data?.notifyDataChanged()
             lineChartView.notifyDataSetChanged()
             print("6개월")
         case 4:
-            setData(entries, formatter: "yy년", marginDate: 365)
+            setData(entries, formatter: "yy년", marginDate: 365, isHighlited: false)
             
-            lineChartView.zoom(scaleX: 0, scaleY: 0, x: 0, y: 0)
-//            lineChartView.zoom(scaleX: 13 - (0.15 * 4 * 12), scaleY: 0, x: 0, y: 0)
+            
+
             
             
             lineChartView.data?.notifyDataChanged()
             lineChartView.notifyDataSetChanged()
             print("1년")
         case 5:
-            setData(entries, formatter: "yy년", marginDate: 730)
-            lineChartView.zoom(scaleX: 0, scaleY: 0, x: 0, y: 0)
+            setData(entries, formatter: "yy년", marginDate: 730, isHighlited: false)
+            
             lineChartView.data?.notifyDataChanged()
             
             lineChartView.notifyDataSetChanged()
@@ -256,7 +236,7 @@ class GraphTableViewController: UITableViewController {
         monthView.layer.shadowOffset = CGSize(width: 0, height: 0)
         monthView.layer.cornerRadius = 12
         monthView.layer.shadowRadius = 12
-        monthView.layer.shadowOpacity = 0.15
+        monthView.layer.shadowOpacity = 0.1
         monthView.layer.masksToBounds = false
         monthView.layer.shadowPath = UIBezierPath(roundedRect: self.monthView.bounds, cornerRadius: monthView.layer.cornerRadius).cgPath
     }
@@ -267,15 +247,14 @@ class GraphTableViewController: UITableViewController {
         token = NotificationCenter.default.addObserver(forName: Notification.Name.didInputData, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             guard let strongSelf = self else { return }
             strongSelf.diaries = DataManager.shared.fetchDiaryEntity(context: DataManager.shared.mainContext)
-            strongSelf.setData(strongSelf.entries, formatter: "d일", marginDate: 7)
+            strongSelf.setData(strongSelf.entries, formatter: "d일", marginDate: 7, isHighlited: true)
             strongSelf.tableView.reloadData()
             strongSelf.lineChartView.data?.notifyDataChanged()
             strongSelf.lineChartView.notifyDataSetChanged()
         }
         configureTableView()
         configureLineChartView()
-        setData(entries, formatter: "d일", marginDate: 7)
-     
+        setData(entries, formatter: "d일", marginDate: 7, isHighlited: true)
     }
     
     private func configureTableView() {
@@ -340,8 +319,7 @@ extension GraphTableViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         guard let dataSet = chartView.data?.dataSets[highlight.dataSetIndex] else { return }
         let entryIndex = dataSet.entryIndex(entry: entry)
-        monthLabel.text = "\((diaries[entryIndex].date ?? Date()).month)월"
-        currentDatLabel.text = diaries[entryIndex].date?.sectionFormatter
+        monthLabel.text = diaries[entryIndex].date?.sectionFormatter
         customMarkerView?.weightLabel.text = "\(diaries[entryIndex].weight)kg"
     }
     

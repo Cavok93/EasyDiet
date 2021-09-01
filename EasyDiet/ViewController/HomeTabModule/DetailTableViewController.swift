@@ -30,11 +30,17 @@ class DetailTableViewController: UITableViewController {
         if diary == nil  {
             DataManager.shared.createDiaryEntity(height: heightNum, weight: weightNum, memo: textViewStr, date: sortedByCalendarDate  ,context: DataManager.shared.mainContext) {
                 Operation.shared.isSave = true
+                Operation.shared.weight = weightNum
+                Operation.shared.height = heightNum
+                Operation.shared.memo = textViewStr
                 NotificationCenter.default.post(name: Notification.Name.didInputData, object: nil)
             }
         } else {
             DataManager.shared.updateDiaryEntity(context: DataManager.shared.mainContext, entity: diary ?? DiaryEntity(), height: heightNum, weight: weightNum, memo: textViewStr, date: sortedByCalendarDate) {
                 Operation.shared.isSave = false
+                Operation.shared.weight = weightNum
+                Operation.shared.height = heightNum
+                Operation.shared.memo = textViewStr
                 NotificationCenter.default.post(name: Notification.Name.didInputData, object: nil)
             }
         }

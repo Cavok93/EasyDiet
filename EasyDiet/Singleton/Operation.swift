@@ -12,7 +12,10 @@ import Foundation
 class Operation {
     static let shared = Operation()
     private init() {}
-    var isSave: Bool? 
+    var isSave: Bool?
+    var weight: Float32?
+    var height: Float32?
+    var memo: String? 
 }
 
 
