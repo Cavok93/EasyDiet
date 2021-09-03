@@ -10,7 +10,34 @@ import FSCalendar
 
 
 class HomeTableViewController: UITableViewController {
-
+    enum WeekDay  {
+        case sunDay
+        case monDay
+        case tuesDay
+        case wednesDay
+        case thursDay
+        case friDay
+        case saturDay
+        var day: String {
+            switch self {
+            case .sunDay:
+                return "일"
+            case .monDay:
+                return "월"
+            case .tuesDay:
+                return "화"
+            case .wednesDay:
+                return "수"
+            case .thursDay:
+                return "목"
+            case .friDay:
+                return "금"
+            case .saturDay:
+                return "토"
+            }
+        }
+    }
+    
     static let identifier = "CalendarCell"
     private let defaultWeight: Float32 = 0.0
     private let defaultHeight: Float32 = 0.0
@@ -18,7 +45,9 @@ class HomeTableViewController: UITableViewController {
     private let defaultMemo: String = ""
     private var currentPageDate: Date?
     private var token:  NSObjectProtocol?
+    private var weekToken: NSObjectProtocol?
     private var diaries = [DiaryEntity]()
+    static let firstWeekDayKey = "firstWeekDayKey"
     
     
     @IBOutlet weak var todayBarButtonItem: UIBarButtonItem!
@@ -26,6 +55,7 @@ class HomeTableViewController: UITableViewController {
     @IBOutlet weak var calendarBackButton: UIButton!
     @IBOutlet weak var calendarNextButton: UIButton!
     @IBOutlet weak var calendarHeaderLabel: UILabel!
+    @IBOutlet weak var subDateLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var bmiLabel: UILabel!
@@ -55,8 +85,10 @@ class HomeTableViewController: UITableViewController {
                 heightLabel.text = "\(diary.height)"
                 memoLabel.text = diary.memo
                 bmiLabel.text = bmiConverter(diary.weight, diary.height)
+                
             }
         }
+        subDateLabel.text = calendar.selectedDate?.dateDotFormatter
         tableView.reloadData()
     }
     
@@ -71,20 +103,16 @@ class HomeTableViewController: UITableViewController {
     private func configureCalendar() {
         calendar.delegate = self
         calendar.dataSource = self
+        calendar.appearance.separators = .interRows
         calendar.headerHeight = 0
         calendar.scope = .month
         calendar.appearance.borderRadius = 0
-        calendarHeaderLabel.text = calendar.currentPage.formatter
-        calendar.appearance.titleWeekendColor = UIColor.systemPink
-        calendar.appearance.headerDateFormat = "YYYY년 M월" //달력의 요일 글자 바꾸는 방법 1
-        calendar.locale = Locale(identifier: "ko_KR") // 달력의 요일 글자 바꾸는 방법 2
-        calendar.calendarWeekdayView.weekdayLabels[0].text = "일"
-        calendar.calendarWeekdayView.weekdayLabels[1].text = "월"
-        calendar.calendarWeekdayView.weekdayLabels[2].text = "화"
-        calendar.calendarWeekdayView.weekdayLabels[3].text = "수"
-        calendar.calendarWeekdayView.weekdayLabels[4].text = "목"
-        calendar.calendarWeekdayView.weekdayLabels[5].text = "금"
-        calendar.calendarWeekdayView.weekdayLabels[6].text = "토"
+        calendarHeaderLabel.text = calendar.currentPage.dateCalendarTitleFormatter
+        calendar.appearance.titleWeekendColor = UIColor.systemRed
+        calendar.appearance.headerDateFormat = "YYYY년 M월"
+        calendar.locale = Locale(identifier: "ko_KR")
+        let weekdays: [WeekDay] = [.sunDay, .monDay, .tuesDay, .wednesDay, .thursDay, .friDay, .saturDay]
+        (0..<weekdays.count).forEach { calendar.calendarWeekdayView.weekdayLabels[$0].text = weekdays[$0].day  }
         calendar.allowsMultipleSelection = false
     }
     
@@ -96,6 +124,7 @@ class HomeTableViewController: UITableViewController {
     @objc private func setToday() {
         calendar.select(Date())
         currentPageDate = Date()
+        didSelectCalendarRow(calendar)
     }
     
     @objc private func changeNumberOfMemoLabelLine() {
@@ -136,42 +165,16 @@ class HomeTableViewController: UITableViewController {
         vc.diary = filteredDiaries.first
     }
     
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let view = view as? UITableViewHeaderFooterView {
-            view.tintColor = UIColor.systemGray6
-            view.textLabel?.backgroundColor = UIColor.clear
-            view.textLabel?.textColor = UIColor.black
-        }
-    }
-    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.selectionStyle = .none
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 0:
-            return 0.0
-        case 1:
-            return UITableView.automaticDimension
-        default:
-            return 0.0
-        }
+        UITableView.automaticDimension
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.estimatedRowHeight
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return nil
-        case 1:
-            return calendar.selectedDate?.sectionFormatter
-        default:
-            return nil
-        }
     }
     
     override func awakeFromNib() {
@@ -180,40 +183,37 @@ class HomeTableViewController: UITableViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        calendar.layer.shadowColor = UIColor.black.cgColor
-        calendar.layer.shadowOffset = CGSize(width: 0, height: 0)
-        calendar.layer.cornerRadius = 12
-        calendar.layer.shadowRadius = 12
-        calendar.layer.shadowOpacity = 0.13
-        calendar.layer.masksToBounds = false
-        calendar.layer.shadowPath = UIBezierPath(roundedRect: self.calendar.bounds, cornerRadius: calendar.layer.cornerRadius).cgPath
-        
         dateControlStackView.layer.shadowColor = UIColor.black.cgColor
         dateControlStackView.layer.shadowOffset = CGSize(width: 0, height: 0)
         dateControlStackView.layer.cornerRadius = 12
         dateControlStackView.layer.shadowRadius = 12
-        dateControlStackView.layer.shadowOpacity = 0.13
+        dateControlStackView.layer.shadowOpacity = 0.12
         dateControlStackView.layer.masksToBounds = false
-        dateControlStackView.layer.shadowPath = UIBezierPath(roundedRect: self.dateControlStackView.bounds, cornerRadius: dateControlStackView.layer.cornerRadius).cgPath
+        dateControlStackView.layer.shadowPath = UIBezierPath(roundedRect: dateControlStackView.bounds , cornerRadius: dateControlStackView.layer.cornerRadius).cgPath
+        
+        calendar.layer.shadowColor = UIColor.black.cgColor
+        calendar.layer.shadowOffset = CGSize(width: 0, height: 0)
+        calendar.layer.cornerRadius = 12
+        calendar.layer.shadowRadius = 12
+        calendar.layer.shadowOpacity = 0.12
+        calendar.layer.masksToBounds = false
+        calendar.layer.shadowPath = UIBezierPath(roundedRect: self.calendar.bounds, cornerRadius: calendar.layer.cornerRadius).cgPath
         
         currentInformationView.layer.shadowColor = UIColor.black.cgColor
         currentInformationView.layer.shadowOffset = CGSize(width: 0, height: 0)
         currentInformationView.layer.cornerRadius = 12
         currentInformationView.layer.shadowRadius = 12
-        currentInformationView.layer.shadowOpacity = 0.13
+        currentInformationView.layer.shadowOpacity = 0.12
         currentInformationView.layer.masksToBounds = false
         currentInformationView.layer.shadowPath = UIBezierPath(roundedRect: self.currentInformationView.bounds, cornerRadius: currentInformationView.layer.cornerRadius).cgPath
-        
-     
-        
     }
     
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCalendar()
         configureTableView()
         calendar.select(Date())
+        subDateLabel.text = calendar.selectedDate?.dateDotFormatter
         diaries = DataManager.shared.fetchDiaryEntity(context: DataManager.shared.mainContext)
         token = NotificationCenter.default.addObserver(forName: Notification.Name.didInputData, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             guard let strongSelf = self else { return }
@@ -232,16 +232,39 @@ class HomeTableViewController: UITableViewController {
                 strongSelf.showToast(message: "삭제되었습니다.")
             }
         }
+        weekToken = NotificationCenter.default.addObserver(forName: Notification.Name.didInputFirstWeekDay, object: nil, queue: OperationQueue.main, using: { [weak self] (noti) in
+            guard let strongSelf = self else { return }
+            if let firstWeekDay = UserDefaults.standard.object(forKey: HomeTableViewController.firstWeekDayKey) as? UInt {
+                strongSelf.calendar.firstWeekday = firstWeekDay
+                strongSelf.calendar.reloadData()
+                strongSelf.tableView.reloadData()
+            } else {
+                strongSelf.calendar.firstWeekday = 1
+                strongSelf.calendar.reloadData()
+                strongSelf.tableView.reloadData()
+            }
+            
+        })
         todayBarButtonItem.addTargetForAction(target: self, action: #selector(setToday))
         seeMoreButton.addTarget(self, action: #selector(changeNumberOfMemoLabelLine), for: .touchUpInside)
         calendarBackButton.addTarget(self, action: #selector(toPreviousMonth), for: .touchUpInside)
         calendarNextButton.addTarget(self, action: #selector(toNextMonth), for: .touchUpInside)
         didSelectCalendarRow(calendar)
+        
+        if let weekDay = UserDefaults.standard.object(forKey: HomeTableViewController.firstWeekDayKey) as? UInt {
+            calendar.firstWeekday = weekDay
+        } else {
+            calendar.firstWeekday = 1
+        }
+        
     }
     
     deinit {
         if let token = token {
             NotificationCenter.default.removeObserver(token)
+        }
+        if let weekToken = weekToken {
+            NotificationCenter.default.removeObserver(weekToken)
         }
     }
 }
@@ -249,7 +272,7 @@ class HomeTableViewController: UITableViewController {
 extension HomeTableViewController: FSCalendarDelegate {
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
         print(calendar)
-        calendarHeaderLabel.text = calendar.currentPage.formatter
+        calendarHeaderLabel.text = calendar.currentPage.dateCalendarTitleFormatter
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {

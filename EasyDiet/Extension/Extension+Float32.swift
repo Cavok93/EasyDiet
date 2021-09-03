@@ -17,7 +17,8 @@ extension Float32 {
     var decimalFormatter: String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-        numberFormatter.positivePrefix = "+"
+        numberFormatter.positivePrefix = ""
+        numberFormatter.negativePrefix = ""
         return numberFormatter.string(from: NSNumber(value: self)) ?? ""
     }
 }

@@ -11,8 +11,6 @@ extension Notification.Name {
     static let didInputData = Notification.Name("didInputData")
 }
 
-
-
 class DetailTableViewController: UITableViewController {
     
     static let identifier = "DetailTableViewController"
@@ -60,13 +58,23 @@ class DetailTableViewController: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func dismissKeyboard() {
+    @objc private func afterCompleted() {
         if heightField.isFirstResponder {
             heightField.resignFirstResponder()
             weightField.becomeFirstResponder()
         } else if weightField.isFirstResponder {
             weightField.resignFirstResponder()
             listTextView.becomeFirstResponder()
+        } else {
+            listTextView.resignFirstResponder()
+        }
+    }
+    
+    @objc private func afterCanceled() {
+        if heightField.isFirstResponder {
+            heightField.resignFirstResponder()
+        } else if weightField.isFirstResponder {
+            weightField.resignFirstResponder()
         } else {
             listTextView.resignFirstResponder()
         }
@@ -99,15 +107,16 @@ class DetailTableViewController: UITableViewController {
         } else {
             print("새로 저장하는 작업")
         }
-        self.navigationController?.navigationBar.topItem?.title = dateForTopTitle?.sectionFormatter
+        self.navigationController?.navigationBar.topItem?.title = dateForTopTitle?.removeZeroDateFormatter
         configureUI()
         heightField.becomeFirstResponder()
-        self.setupHideKeyboardOnTap()
         let toolBar = UIToolbar()
+        toolBar.frame.size.width = tableView.frame.width
         toolBar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(self.dismissKeyboard))
+        let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self , action: #selector(afterCanceled))
+        let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(self.afterCompleted))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolBar.setItems([flexibleSpace, doneButton], animated: false )
+        toolBar.setItems([cancelButton, flexibleSpace, doneButton], animated: false )
         toolBar.isUserInteractionEnabled = true
         toolBar.updateConstraintsIfNeeded()
         heightField.inputAccessoryView = toolBar
@@ -121,7 +130,6 @@ class DetailTableViewController: UITableViewController {
         listTextView.layer.borderColor = UIColor.gray.withAlphaComponent(0.6).cgColor
         listTextView.layer.borderWidth = 0.5
         listTextView.clipsToBounds = true
-        
     }
 }
 

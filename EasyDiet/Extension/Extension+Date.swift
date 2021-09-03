@@ -31,19 +31,49 @@ extension Date {
         return cal.component(.hour, from: self)
     }
     
-    var formatter: String {
+    var dateCalendarTitleFormatter: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 M월"
         formatter.locale = Locale(identifier: "ko_kr")
         return formatter.string(from: self)
     }
     
-    var sectionFormatter: String {
+    var removeZeroDateFormatter: String {
         let formatter = DateFormatter()
         formatter.dateStyle = .long
         formatter.timeStyle = .none
         formatter.locale = Locale(identifier: "ko_kr")
         return formatter.string(from: self)
+    }
+    
+    var dateDotFormatter: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_kr")
+        formatter.dateFormat = "yyyy.MM.dd (E)"
+        return formatter.string(from: self)
+    }
+    
+    var fullDateFormatter: String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .full
+        formatter.timeStyle = .none
+        formatter.locale = Locale(identifier: "ko_kr")
+        return formatter.string(from: self)
+    }
+    
+    var simpleWeekDateFormatter: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E"
+        formatter.locale = Locale(identifier: "ko_kr")
+        return formatter.string(from: self)
+    }
+    var returnAllWeeks: [String] {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_kr")
+        var resultWeeks = [String]()
+        guard let weeks = formatter.weekdaySymbols else { return [String]()}
+        weeks.forEach { resultWeeks.append($0)}
+        return resultWeeks
     }
 }
 
