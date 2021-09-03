@@ -6,11 +6,20 @@
 //
 
 import UIKit
+import MessageUI
+
 
 class MoreTableViewController: UITableViewController {
     
+    private func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertController(title: "메일을 전송 실패", message: "아이폰 이메일 설정을 확인하고 다시 시도해주세요.", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "확인", style: .default) {
+            (action) in
+        }
+        sendMailErrorAlert.addAction(confirmAction)
+        self.present(sendMailErrorAlert, animated: true, completion: nil)
+    }
     
-    let diaries = [DiaryEntity]()
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -50,6 +59,16 @@ class MoreTableViewController: UITableViewController {
                 let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
                 alert.addAction(okAction)
                 present(alert, animated: true, completion: nil)
+            } else if indexPath.row == 3 {
+                if MFMailComposeViewController.canSendMail() {
+                    let compseVC = MFMailComposeViewController()
+                    compseVC.mailComposeDelegate = self
+                    compseVC.setToRecipients(["cavook.info@gmail.com"])
+                    self.present(compseVC, animated: true, completion: nil)
+                }
+                else {
+                    self.showSendMailErrorAlert()
+                }
             }
         case 1:
             print()
@@ -72,6 +91,27 @@ class MoreTableViewController: UITableViewController {
             break
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+
+
+
+extension MoreTableViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        switch result {
+        case .sent:
+            print("")
+        case .saved:
+            print("")
+        case .cancelled:
+            print("")
+        case .failed:
+            print("")
+        default:
+            break
+        }
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 

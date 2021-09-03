@@ -49,7 +49,6 @@ class HomeTableViewController: UITableViewController {
     private var diaries = [DiaryEntity]()
     static let firstWeekDayKey = "firstWeekDayKey"
     
-    
     @IBOutlet weak var todayBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var calendarBackButton: UIButton!
@@ -63,6 +62,7 @@ class HomeTableViewController: UITableViewController {
     @IBOutlet weak var seeMoreButton: UIButton!
     @IBOutlet weak var currentInformationView: UIView!
     @IBOutlet weak var dateControlStackView: UIStackView!
+    @IBOutlet weak var createInfoButton: UIButton!
     
     private func scrollCurrentPage(isPrev: Bool) {
         let cal = Calendar.current
@@ -73,7 +73,7 @@ class HomeTableViewController: UITableViewController {
     }
     
     private func didSelectCalendarRow(_ calendar: FSCalendar) {
-        let filteredDiaries = diaries.filter { $0.date == calendar.selectedDate } //MARK: 선택날짜에 저장되어 있는 데이터 추출
+        let filteredDiaries = diaries.filter { $0.date == calendar.selectedDate }
         if filteredDiaries.isEmpty {
             weightLabel.text = "\(defaultWeight)"
             heightLabel.text = "\(defaultHeight)"
@@ -155,6 +155,23 @@ class HomeTableViewController: UITableViewController {
             scrollCurrentPage(isPrev: false)
         }
     }
+
+    @objc private func showMenuAlert() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let okAction = UIAlertAction(title: "삭제", style: .default) { [weak self] _  in
+            guard let strongSelf = self else { return }
+            let filteredDiaries = strongSelf.diaries.filter { $0.date == strongSelf.calendar.selectedDate }
+            print("내가 고른 엔티티야!",filteredDiaries.first?.date)
+            DataManager.shared.deleteDietEntity(entity: filteredDiaries.first ?? DiaryEntity(), context: DataManager.shared.mainContext)
+            strongSelf.calendar.reloadData()
+            strongSelf.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        okAction.setValue(UIColor.red, forKey: "titleTextColor")
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print(#function)
@@ -164,9 +181,17 @@ class HomeTableViewController: UITableViewController {
         let filteredDiaries = diaries.filter { $0.date == calendar.selectedDate }
         vc.diary = filteredDiaries.first
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.section, indexPath.row)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.selectionStyle = .none
+        if indexPath.section == 1 && indexPath.row == 1 {
+            cell.selectionStyle = .default
+        } else {
+            cell.selectionStyle = .none
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -206,6 +231,11 @@ class HomeTableViewController: UITableViewController {
         currentInformationView.layer.shadowOpacity = 0.12
         currentInformationView.layer.masksToBounds = false
         currentInformationView.layer.shadowPath = UIBezierPath(roundedRect: self.currentInformationView.bounds, cornerRadius: currentInformationView.layer.cornerRadius).cgPath
+        
+        seeMoreButton.layer.cornerRadius = 7.6
+        seeMoreButton.layer.borderWidth = 0.8
+        seeMoreButton.layer.borderColor = UIColor.lightGray.cgColor
+        seeMoreButton.clipsToBounds = true
     }
     
     override func viewDidLoad() {
@@ -249,6 +279,8 @@ class HomeTableViewController: UITableViewController {
         seeMoreButton.addTarget(self, action: #selector(changeNumberOfMemoLabelLine), for: .touchUpInside)
         calendarBackButton.addTarget(self, action: #selector(toPreviousMonth), for: .touchUpInside)
         calendarNextButton.addTarget(self, action: #selector(toNextMonth), for: .touchUpInside)
+        createInfoButton.addTarget(self, action: #selector(showMenuAlert), for: .touchUpInside)
+        
         didSelectCalendarRow(calendar)
         
         if let weekDay = UserDefaults.standard.object(forKey: HomeTableViewController.firstWeekDayKey) as? UInt {
@@ -256,11 +288,10 @@ class HomeTableViewController: UITableViewController {
         } else {
             calendar.firstWeekday = 1
         }
-        
     }
     
     deinit {
-        if let token = token {
+        if let token = token  {
             NotificationCenter.default.removeObserver(token)
         }
         if let weekToken = weekToken {
@@ -306,7 +337,4 @@ extension HomeTableViewController: FSCalendarDataSource {
         return ""
     }
 }
-
-
-
 
