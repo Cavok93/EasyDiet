@@ -17,7 +17,7 @@ class SettingTableViewController: UITableViewController {
     var date = Date()
     var selectedRow: Int = 0
     
-    @IBOutlet weak var calendarStartWeakField: UITextField!
+    @IBOutlet weak var calendarStartWeakField: CustomField!
     @IBOutlet weak var calendarStartWeekLabel: UILabel!
     
     

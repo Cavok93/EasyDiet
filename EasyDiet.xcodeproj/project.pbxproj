@@ -17,7 +17,6 @@
 		239BC74526D819050044E9DE /* DataManager+DiaryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC74426D819050044E9DE /* DataManager+DiaryEntity.swift */; };
 		239BC74726D819210044E9DE /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC74626D819210044E9DE /* DataManager.swift */; };
 		239BC74E26D89E870044E9DE /* Extension+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC74D26D89E870044E9DE /* Extension+Date.swift */; };
-		239BC75026D8A0310044E9DE /* Diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC74F26D8A0310044E9DE /* Diary.swift */; };
 		239BC75226D8CD670044E9DE /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC75126D8CD670044E9DE /* Extension+UIViewController.swift */; };
 		239BC75426D8D50D0044E9DE /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC75326D8D50D0044E9DE /* HomeTableViewController.swift */; };
 		239BC75626DA21610044E9DE /* Extension+Float32.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC75526DA21600044E9DE /* Extension+Float32.swift */; };
@@ -31,9 +30,10 @@
 		239BC77126DF68BB0044E9DE /* Extension+UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC77026DF68B40044E9DE /* Extension+UIBarButtonItem.swift */; };
 		23D27D5526E0D0C700A67D01 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D5426E0D0C700A67D01 /* SettingTableViewController.swift */; };
 		23D27D5726E0D0ED00A67D01 /* PolicyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D5626E0D0ED00A67D01 /* PolicyTableViewController.swift */; };
-		23D27D5926E0D10800A67D01 /* QuestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D5826E0D10800A67D01 /* QuestionTableViewController.swift */; };
 		23D27D5F26E121D500A67D01 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D5E26E121D500A67D01 /* CustomTextField.swift */; };
 		23D27D6126E1235E00A67D01 /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D6026E1235E00A67D01 /* Extension+UITextField.swift */; };
+		23D27D6326E2063C00A67D01 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D6226E2063C00A67D01 /* QuestionViewController.swift */; };
+		23D27D6626E2066200A67D01 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D6526E2066200A67D01 /* QuestionTableViewCell.swift */; };
 		F294BF2CFD0DBEA8188E46BE /* Pods_EasyDiet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD04EC6CC489125D7D6BE5E9 /* Pods_EasyDiet.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +50,6 @@
 		239BC74426D819050044E9DE /* DataManager+DiaryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+DiaryEntity.swift"; sourceTree = "<group>"; };
 		239BC74626D819210044E9DE /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		239BC74D26D89E870044E9DE /* Extension+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Date.swift"; sourceTree = "<group>"; };
-		239BC74F26D8A0310044E9DE /* Diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diary.swift; sourceTree = "<group>"; };
 		239BC75126D8CD670044E9DE /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		239BC75326D8D50D0044E9DE /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		239BC75526DA21600044E9DE /* Extension+Float32.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Float32.swift"; sourceTree = "<group>"; };
@@ -64,9 +63,10 @@
 		239BC77026DF68B40044E9DE /* Extension+UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIBarButtonItem.swift"; sourceTree = "<group>"; };
 		23D27D5426E0D0C700A67D01 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		23D27D5626E0D0ED00A67D01 /* PolicyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyTableViewController.swift; sourceTree = "<group>"; };
-		23D27D5826E0D10800A67D01 /* QuestionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewController.swift; sourceTree = "<group>"; };
 		23D27D5E26E121D500A67D01 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		23D27D6026E1235E00A67D01 /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
+		23D27D6226E2063C00A67D01 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		23D27D6526E2066200A67D01 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		47CBDF2B4F43FF6EA4A43660 /* Pods-EasyDiet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyDiet.release.xcconfig"; path = "Target Support Files/Pods-EasyDiet/Pods-EasyDiet.release.xcconfig"; sourceTree = "<group>"; };
 		9E36A323D50EEB4192742D74 /* Pods-EasyDiet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyDiet.debug.xcconfig"; path = "Target Support Files/Pods-EasyDiet/Pods-EasyDiet.debug.xcconfig"; sourceTree = "<group>"; };
 		DD04EC6CC489125D7D6BE5E9 /* Pods_EasyDiet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EasyDiet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,7 +117,6 @@
 				239BC75D26DA38940044E9DE /* Singleton */,
 				239BC74C26D89E720044E9DE /* Extension */,
 				239BC74326D818D50044E9DE /* DataManager */,
-				238A4F4626D7D1AE0091819A /* Model */,
 				238A4F2F26D7CFE90091819A /* AppDelegate.swift */,
 				238A4F3126D7CFE90091819A /* SceneDelegate.swift */,
 				238A4F3526D7CFE90091819A /* Main.storyboard */,
@@ -130,14 +129,6 @@
 				23D27D5E26E121D500A67D01 /* CustomTextField.swift */,
 			);
 			path = EasyDiet;
-			sourceTree = "<group>";
-		};
-		238A4F4626D7D1AE0091819A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				239BC74F26D8A0310044E9DE /* Diary.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		238A4F4826D7D35F0091819A /* HomeTabModule */ = {
@@ -196,7 +187,8 @@
 				239BC75B26DA31FA0044E9DE /* MoreTableViewController.swift */,
 				23D27D5426E0D0C700A67D01 /* SettingTableViewController.swift */,
 				23D27D5626E0D0ED00A67D01 /* PolicyTableViewController.swift */,
-				23D27D5826E0D10800A67D01 /* QuestionTableViewController.swift */,
+				23D27D6226E2063C00A67D01 /* QuestionViewController.swift */,
+				23D27D6426E2064300A67D01 /* cell */,
 			);
 			path = MoreTabModule;
 			sourceTree = "<group>";
@@ -207,6 +199,14 @@
 				239BC76326DA46A60044E9DE /* GraphTableViewController.swift */,
 			);
 			path = GraphTapModule;
+			sourceTree = "<group>";
+		};
+		23D27D6426E2064300A67D01 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				23D27D6526E2066200A67D01 /* QuestionTableViewCell.swift */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		78EED22526DFC198AA3DD381 /* Pods */ = {
@@ -334,14 +334,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				239BC75626DA21610044E9DE /* Extension+Float32.swift in Sources */,
-				23D27D5926E0D10800A67D01 /* QuestionTableViewController.swift in Sources */,
 				238A4F5026D7D8620091819A /* DetailTableViewController.swift in Sources */,
 				239BC77126DF68BB0044E9DE /* Extension+UIBarButtonItem.swift in Sources */,
 				239BC74526D819050044E9DE /* DataManager+DiaryEntity.swift in Sources */,
 				238A4F3A26D7CFE90091819A /* EasyDiet.xcdatamodeld in Sources */,
 				239BC75226D8CD670044E9DE /* Extension+UIViewController.swift in Sources */,
-				239BC75026D8A0310044E9DE /* Diary.swift in Sources */,
+				23D27D6326E2063C00A67D01 /* QuestionViewController.swift in Sources */,
 				239BC76726DB53720044E9DE /* Extension+UIColor.swift in Sources */,
+				23D27D6626E2066200A67D01 /* QuestionTableViewCell.swift in Sources */,
 				238A4F3026D7CFE90091819A /* AppDelegate.swift in Sources */,
 				239BC75426D8D50D0044E9DE /* HomeTableViewController.swift in Sources */,
 				23D27D5526E0D0C700A67D01 /* SettingTableViewController.swift in Sources */,

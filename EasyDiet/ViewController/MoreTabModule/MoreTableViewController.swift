@@ -14,6 +14,7 @@ class MoreTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        tableView.tableFooterView = UIView(frame: .zero)
         tableView.backgroundColor = UIColor.systemBackground
         
     }

@@ -25,19 +25,17 @@ extension UIViewController {
           
             self.tabBarController?.view.addSubview(blurredEffectView)
             
-            
             let toastLabel = UILabel()
             toastLabel.numberOfLines = 0
             toastLabel.alpha = 1.0
             toastLabel.backgroundColor = UIColor.clear
-            toastLabel.textColor = UIColor.darkGray
+            toastLabel.textColor = UIColor.black
             toastLabel.font = font
             
             toastLabel.textAlignment = .center
             toastLabel.text = message
             toastLabel.frame = blurredEffectView.contentView.bounds
             blurredEffectView.contentView.addSubview(toastLabel)
-            
             
             UIView.animate(withDuration: 0.0, delay: 2.0, options: .allowUserInteraction, animations: {
                             toastLabel.alpha = 0.0 },

@@ -25,7 +25,8 @@ class GraphTableViewController: UITableViewController {
     @IBOutlet weak var goalWeightSettingButton: UIBarButtonItem!
     @IBOutlet weak var standardDateLabel: UILabel!
     @IBOutlet weak var informationView: UIView!
-    @IBOutlet weak var dateField: UITextField!
+    @IBOutlet weak var dateField: CustomField!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var calculatedWeightLabel: UILabel!
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var dateSementControl: UISegmentedControl!
@@ -44,7 +45,7 @@ class GraphTableViewController: UITableViewController {
         let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(afterSelected))
         centerTitleButton.isEnabled = false
         centerTitleButton.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18, weight: .semibold), NSAttributedString.Key.foregroundColor : UIColor.black], for: .disabled)
-  
+        
         toolBar.setItems([cancelButton, flexibleSpace, centerTitleButton,  flexibleSpace, doneButton], animated: false )
         toolBar.isUserInteractionEnabled = true
         toolBar.updateConstraintsIfNeeded()
@@ -117,17 +118,17 @@ class GraphTableViewController: UITableViewController {
         
         let savedFirstWeightYpoint = entries.first?.y ?? 0.0 //MARK: 저장된 첫번째 몸무게
         let savedLastWeightYpoint = entries.last?.y ?? 0.0 //MARK: 저장된 마지막 몸무게
-
+        
         lineChartView.leftAxis.axisMaximum = Double(maximumWeight) + Double(20.0)
         lineChartView.leftAxis.axisMinimum = Double(minimumWeight)
         
-   
+        
         lineChartView.xAxis.axisMinimum = savedFirstDateXpoint - marginDate
         lineChartView.xAxis.axisMaximum = savedLastDateXpoint + marginDate
-   
+        
         calculateWeight(Float32(savedFirstWeightYpoint), Float32(savedLastWeightYpoint))
         
-        dateField.text = diaries.last?.date?.dateDotFormatter
+        dateLabel.text = diaries.last?.date?.dateDotFormatter
         standardDateLabel.text = diaries.first?.date?.fullDateFormatter
         
         dataSet = LineChartDataSet(entries: entries, label: "몸무게")
@@ -152,7 +153,7 @@ class GraphTableViewController: UITableViewController {
         if let goalWeightValue = UserDefaults.standard.object(forKey: GraphTableViewController.goalKey) as? Double {
             if goalWeightValue > maximumWeight {
                 lineChartView.leftAxis.axisMaximum = goalWeightValue + Double(20)
-            } else {
+            } else  {
                 lineChartView.leftAxis.axisMaximum = Double(maximumWeight) + Double(20)
             }
             goalLine = ChartLimitLine(limit: goalWeightValue, label: "목표 체중: \(goalWeightValue)kg")
@@ -162,6 +163,9 @@ class GraphTableViewController: UITableViewController {
             goalLine?.lineDashLengths = [5]
             lineChartView.leftAxis.addLimitLine(goalLine ?? ChartLimitLine())
         } else {
+            print("goalLine = nil")
+            goalLine = nil
+            lineChartView.leftAxis.removeAllLimitLines()
             return
         }
     }
@@ -170,7 +174,7 @@ class GraphTableViewController: UITableViewController {
         let selectedDateXpoint = entries[row].x
         let selectedWeightYpoint = entries[row].y
         let savedFirstWeightYpoint = entries.first?.y ?? 0.0
-        dateField.text = diaries[row].date?.dateDotFormatter
+        dateLabel.text = diaries[row].date?.dateDotFormatter
         calculateWeight(Float32(savedFirstWeightYpoint), Float32(selectedWeightYpoint))
         let hightlight = Highlight(x: selectedDateXpoint, y: Double.nan, dataSetIndex: 0)
         lineChartView.highlightValue(hightlight)
@@ -257,6 +261,12 @@ class GraphTableViewController: UITableViewController {
         informationView.layer.shadowOpacity = 0.12
         informationView.layer.masksToBounds = false
         informationView.layer.shadowPath = UIBezierPath(roundedRect: self.informationView.bounds, cornerRadius: informationView.layer.cornerRadius).cgPath
+        
+        dateLabel.layer.cornerRadius = 10
+        dateLabel.layer.borderWidth = 1.0
+        dateLabel.layer.borderColor = UIColor.lightGray.cgColor
+        dateLabel.clipsToBounds = true
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -275,7 +285,7 @@ class GraphTableViewController: UITableViewController {
             strongSelf.lineChartView.notifyDataSetChanged()
             strongSelf.tableView.reloadData()
         }
-       
+        
         
         configureTableView()
         configureLineChartView()
@@ -345,7 +355,7 @@ extension GraphTableViewController: ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         guard let dataSet = chartView.data?.dataSets[highlight.dataSetIndex] else { return }
         let entryIndex = dataSet.entryIndex(entry: entry)
-        dateField.text = diaries[entryIndex].date?.dateDotFormatter
+        dateLabel.text = diaries[entryIndex].date?.dateDotFormatter
         customMarkerView?.weightLabel.text = "\(diaries[entryIndex].weight)kg"
         let seletedWeight = diaries[entryIndex].weight
         let initialWeight = diaries.first?.weight ?? 0.0
@@ -438,4 +448,27 @@ extension GraphTableViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedRow = row
     }
+}
+
+
+
+class CustomField: UITextField {
+    open override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if action == #selector(UIResponderStandardEditActions.paste(_:))
+            || action == #selector(UIResponderStandardEditActions.cut(_:))
+            || action ==  #selector(UIResponderStandardEditActions.copy(_:))
+            || action ==  #selector(UIResponderStandardEditActions.select(_:))
+            || action == #selector(UIResponderStandardEditActions.selectAll(_:))
+            || action == #selector(UIResponderStandardEditActions.delete(_:))
+            || action == #selector(UIResponderStandardEditActions.makeTextWritingDirectionLeftToRight(_:))
+            || action == #selector(UIResponderStandardEditActions.makeTextWritingDirectionRightToLeft(_:))
+            || action == #selector(UIResponderStandardEditActions.toggleBoldface(_:))
+            || action == #selector(UIResponderStandardEditActions.toggleItalics(_:))
+            || action == #selector(UIResponderStandardEditActions.toggleUnderline(_:))
+            || action == #selector(UIResponderStandardEditActions.increaseSize(_:))
+            || action == #selector(UIResponderStandardEditActions.decreaseSize(_:)) {
+                return false
+            }
+            return super.canPerformAction(action, withSender: sender)
+        }
 }
