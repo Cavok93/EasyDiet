@@ -30,10 +30,10 @@
 		239BC77126DF68BB0044E9DE /* Extension+UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC77026DF68B40044E9DE /* Extension+UIBarButtonItem.swift */; };
 		23D27D5526E0D0C700A67D01 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D5426E0D0C700A67D01 /* SettingTableViewController.swift */; };
 		23D27D5726E0D0ED00A67D01 /* PolicyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D5626E0D0ED00A67D01 /* PolicyTableViewController.swift */; };
-		23D27D5F26E121D500A67D01 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D5E26E121D500A67D01 /* CustomTextField.swift */; };
 		23D27D6126E1235E00A67D01 /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D6026E1235E00A67D01 /* Extension+UITextField.swift */; };
 		23D27D6326E2063C00A67D01 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D6226E2063C00A67D01 /* QuestionViewController.swift */; };
 		23D27D6626E2066200A67D01 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D6526E2066200A67D01 /* QuestionTableViewCell.swift */; };
+		23D27D9326E33E5200A67D01 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D9226E33E5200A67D01 /* CustomTextField.swift */; };
 		F294BF2CFD0DBEA8188E46BE /* Pods_EasyDiet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD04EC6CC489125D7D6BE5E9 /* Pods_EasyDiet.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,10 +63,10 @@
 		239BC77026DF68B40044E9DE /* Extension+UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIBarButtonItem.swift"; sourceTree = "<group>"; };
 		23D27D5426E0D0C700A67D01 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		23D27D5626E0D0ED00A67D01 /* PolicyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyTableViewController.swift; sourceTree = "<group>"; };
-		23D27D5E26E121D500A67D01 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		23D27D6026E1235E00A67D01 /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
 		23D27D6226E2063C00A67D01 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		23D27D6526E2066200A67D01 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
+		23D27D9226E33E5200A67D01 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		47CBDF2B4F43FF6EA4A43660 /* Pods-EasyDiet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyDiet.release.xcconfig"; path = "Target Support Files/Pods-EasyDiet/Pods-EasyDiet.release.xcconfig"; sourceTree = "<group>"; };
 		9E36A323D50EEB4192742D74 /* Pods-EasyDiet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EasyDiet.debug.xcconfig"; path = "Target Support Files/Pods-EasyDiet/Pods-EasyDiet.debug.xcconfig"; sourceTree = "<group>"; };
 		DD04EC6CC489125D7D6BE5E9 /* Pods_EasyDiet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EasyDiet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +113,7 @@
 		238A4F2E26D7CFE90091819A /* EasyDiet */ = {
 			isa = PBXGroup;
 			children = (
+				23D27D9126E33E3500A67D01 /* Class */,
 				239BC76026DA46200044E9DE /* ViewController */,
 				239BC75D26DA38940044E9DE /* Singleton */,
 				239BC74C26D89E720044E9DE /* Extension */,
@@ -124,9 +125,6 @@
 				238A4F3D26D7CFED0091819A /* LaunchScreen.storyboard */,
 				238A4F4026D7CFED0091819A /* Info.plist */,
 				238A4F3826D7CFE90091819A /* EasyDiet.xcdatamodeld */,
-				239BC76A26DDC9DE0044E9DE /* CustomMarkerView.xib */,
-				239BC76C26DDCA1D0044E9DE /* CustomMarkerView.swift */,
-				23D27D5E26E121D500A67D01 /* CustomTextField.swift */,
 			);
 			path = EasyDiet;
 			sourceTree = "<group>";
@@ -196,6 +194,7 @@
 		239BC76226DA46620044E9DE /* GraphTapModule */ = {
 			isa = PBXGroup;
 			children = (
+				23D27D9026E33DB200A67D01 /* Xib */,
 				239BC76326DA46A60044E9DE /* GraphTableViewController.swift */,
 			);
 			path = GraphTapModule;
@@ -207,6 +206,23 @@
 				23D27D6526E2066200A67D01 /* QuestionTableViewCell.swift */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		23D27D9026E33DB200A67D01 /* Xib */ = {
+			isa = PBXGroup;
+			children = (
+				239BC76A26DDC9DE0044E9DE /* CustomMarkerView.xib */,
+				239BC76C26DDCA1D0044E9DE /* CustomMarkerView.swift */,
+			);
+			path = Xib;
+			sourceTree = "<group>";
+		};
+		23D27D9126E33E3500A67D01 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				23D27D9226E33E5200A67D01 /* CustomTextField.swift */,
+			);
+			path = Class;
 			sourceTree = "<group>";
 		};
 		78EED22526DFC198AA3DD381 /* Pods */ = {
@@ -345,7 +361,6 @@
 				238A4F3026D7CFE90091819A /* AppDelegate.swift in Sources */,
 				239BC75426D8D50D0044E9DE /* HomeTableViewController.swift in Sources */,
 				23D27D5526E0D0C700A67D01 /* SettingTableViewController.swift in Sources */,
-				23D27D5F26E121D500A67D01 /* CustomTextField.swift in Sources */,
 				239BC74726D819210044E9DE /* DataManager.swift in Sources */,
 				239BC76F26DE28F30044E9DE /* Extension+Int.swift in Sources */,
 				23D27D5726E0D0ED00A67D01 /* PolicyTableViewController.swift in Sources */,
@@ -353,6 +368,7 @@
 				238A4F3226D7CFE90091819A /* SceneDelegate.swift in Sources */,
 				239BC76D26DDCA1D0044E9DE /* CustomMarkerView.swift in Sources */,
 				239BC75F26DA394B0044E9DE /* Operation.swift in Sources */,
+				23D27D9326E33E5200A67D01 /* CustomTextField.swift in Sources */,
 				239BC75C26DA31FA0044E9DE /* MoreTableViewController.swift in Sources */,
 				23D27D6126E1235E00A67D01 /* Extension+UITextField.swift in Sources */,
 				239BC74E26D89E870044E9DE /* Extension+Date.swift in Sources */,

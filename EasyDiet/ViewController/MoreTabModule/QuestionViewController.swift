@@ -17,7 +17,7 @@ class QuestionViewController: UIViewController {
     
     var list = [
         Question(questionStr: "계산기준일이 언제인가요?", answerStr: "달력 기준으로 가장 먼저 신체정보를 등록한 날입니다.", isExpand: false),
-        Question(questionStr: "목표 체중 등록은 어떻게 하나요??", answerStr: "그래프 화면 우측 상단에 '+' 버튼을 탭하시면 등록이 가능합니다.", isExpand: false),
+        Question(questionStr: "목표 체중 등록은 어떻게 하나요?", answerStr: "그래프 화면 우측 상단에 '+' 버튼을 탭하시면 등록이 가능합니다.", isExpand: false),
         Question(questionStr: "신체정보 삭제는 어떻게 하나요?", answerStr: "달력 화면 우측 하단의 쓰레기통 아이콘을 탭하시면 삭제가 가능합니다. 전체 데이터 삭제를 하시고자 하는 경우 더보기 화면에서 '전체 데이터 삭제' 를 탭하시면 됩니다. 단, 삭제된 데이터는 복구가 불가능합니다.", isExpand: false)
     ]
     
@@ -43,9 +43,7 @@ extension QuestionViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: QuestionTableViewCell.identifier, for: indexPath) as? QuestionTableViewCell else { return UITableViewCell() }
-        
         let target = list[indexPath.row]
-        
         cell.questionLabel.text = target.questionStr
         switch target.isExpand  {
         case true:

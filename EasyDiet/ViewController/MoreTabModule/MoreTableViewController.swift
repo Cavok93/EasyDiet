@@ -43,7 +43,6 @@ class MoreTableViewController: UITableViewController {
         }
        return 30
     }
- 
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
@@ -87,9 +86,6 @@ class MoreTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-
-
-
 
 extension MoreTableViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
