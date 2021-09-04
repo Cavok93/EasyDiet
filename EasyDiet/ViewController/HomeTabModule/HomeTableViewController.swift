@@ -334,12 +334,6 @@ extension HomeTableViewController: FSCalendarDelegate {
         guard let targetDay = targetDay else { return Date()}
         return targetDay.addingTimeInterval( 2.year)
     }
-    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
-//        cell.backgroundColor = UIColor.red
-        cell.selectedBackgroundView?.backgroundColor = UIColor.black
-        
-        calendar.rowHeight = 100
-    }
 }
 
 extension HomeTableViewController: FSCalendarDataSource {

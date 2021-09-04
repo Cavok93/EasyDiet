@@ -18,7 +18,7 @@ class QuestionTableViewCell: UITableViewCell {
     func configureLabelSpacing(label: UILabel) {
         let attrString = NSMutableAttributedString(string: label.text ?? "")
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 4
+        paragraphStyle.lineSpacing = 8
         attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
         label.attributedText = attrString
     }
