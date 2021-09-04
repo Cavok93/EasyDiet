@@ -9,17 +9,16 @@ import Foundation
 import CoreData
 
 extension DataManager {
-    func createDiaryEntity(height: Float32, weight: Float32, memo: String, date: Date, orderBasedDate: Date = Date(), context: NSManagedObjectContext, completion:@escaping () -> Void) {
-        context.perform {
-            let newDiaryEntity = DiaryEntity(context: context)
-            
+    func createDiaryEntity(height: Float32, weight: Float32, memo: String, date: Date, orderBasedDate: Date = Date(), completion:@escaping () -> Void) {
+        mainContext.perform {
+            let newDiaryEntity = DiaryEntity(context: self.mainContext)
             newDiaryEntity.height = height
             newDiaryEntity.weight = weight
             newDiaryEntity.memo = memo
             newDiaryEntity.date = date
             newDiaryEntity.orderBasedDate = orderBasedDate
             do {
-                try context.save()
+                try self.mainContext.save()
             } catch {
                 print(error.localizedDescription)
                 return
@@ -28,9 +27,9 @@ extension DataManager {
         }
     }
     
-    func fetchDiaryEntity(context: NSManagedObjectContext) -> [DiaryEntity] {
+    func fetchDiaryEntity() -> [DiaryEntity] {
         var entity = [DiaryEntity]()
-        context.performAndWait {
+        mainContext.performAndWait {
             let request: NSFetchRequest<DiaryEntity> = DiaryEntity.fetchRequest()
             let sortByDate = NSSortDescriptor(key: #keyPath(DiaryEntity.date), ascending: true)
             request.sortDescriptors = [sortByDate]
@@ -41,7 +40,7 @@ extension DataManager {
             ]
             request.fetchBatchSize = 30
             do {
-                entity = try context.fetch(request)
+                entity = try mainContext.fetch(request)
             } catch {
                 return
             }
@@ -49,9 +48,9 @@ extension DataManager {
         return entity
     }
     
-    func fetchDiaryEntityByOrderBasedDate(context: NSManagedObjectContext) -> [DiaryEntity] {
+    func fetchDiaryEntityByOrderBasedDate() -> [DiaryEntity] {
         var entity = [DiaryEntity]()
-        context.performAndWait {
+        mainContext.performAndWait {
             let request: NSFetchRequest<DiaryEntity> = DiaryEntity.fetchRequest()
             let sortByDate = NSSortDescriptor(key: #keyPath(DiaryEntity.orderBasedDate), ascending: false)
             request.sortDescriptors = [sortByDate]
@@ -62,7 +61,7 @@ extension DataManager {
             ]
             request.fetchBatchSize = 30
             do {
-                entity = try context.fetch(request)
+                entity = try mainContext.fetch(request)
             } catch {
                 return
             }
@@ -70,8 +69,8 @@ extension DataManager {
         return entity
     }
     
-    func updateDiaryEntity(context: NSManagedObjectContext,  entity: DiaryEntity, height: Float32, weight: Float32, memo: String, date: Date, orderBasedDate: Date = Date(),  completion: @escaping () -> Void) {
-        context.perform {
+    func updateDiaryEntity(entity: DiaryEntity, height: Float32, weight: Float32, memo: String, date: Date, orderBasedDate: Date = Date(),  completion: @escaping () -> Void) {
+        mainContext.perform {
             entity.height = height
             entity.weight = weight
             entity.memo = memo
@@ -82,15 +81,15 @@ extension DataManager {
         }
     }
     
-    func deleteDietEntity(entity: DiaryEntity, context: NSManagedObjectContext) {
-        context.perform {
-            context.delete(entity)
-            do {
-                try context.save()
-            } catch {
-                print(error.localizedDescription)
-                return
+    
+    func deleteDietEntity(entity: DiaryEntity?,
+                           completion: @escaping() -> Void) {
+        mainContext.perform {
+            if let entity = entity {
+                self.mainContext.delete(entity)
             }
+            self.saveContext()
+            completion()
         }
     }
     

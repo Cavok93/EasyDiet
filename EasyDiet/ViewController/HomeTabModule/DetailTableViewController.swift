@@ -26,12 +26,12 @@ class DetailTableViewController: UITableViewController {
         guard let weightStr = weightField.text, weightStr.count > 0, let weightNum = Float32(weightStr)else { return }
         guard let textViewStr = listTextView.text, textViewStr.count > 0 else { return }
         if diary == nil  {
-            DataManager.shared.createDiaryEntity(height: heightNum, weight: weightNum, memo: textViewStr, date: sortedByCalendarDate  ,context: DataManager.shared.mainContext) {
+            DataManager.shared.createDiaryEntity(height: heightNum, weight: weightNum, memo: textViewStr, date: sortedByCalendarDate) {
                 Operation.shared.isSave = true
                 NotificationCenter.default.post(name: Notification.Name.didInputData, object: nil)
             }
         } else {
-            DataManager.shared.updateDiaryEntity(context: DataManager.shared.mainContext, entity: diary ?? DiaryEntity(), height: heightNum, weight: weightNum, memo: textViewStr, date: sortedByCalendarDate) {
+            DataManager.shared.updateDiaryEntity(entity: diary ?? DiaryEntity(), height: heightNum, weight: weightNum, memo: textViewStr, date: sortedByCalendarDate) {
                 Operation.shared.isSave = false
                 NotificationCenter.default.post(name: Notification.Name.didInputData, object: nil)
             }
@@ -100,12 +100,9 @@ class DetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let diary = diary  {
-            print("수정작업")
             heightField.text = "\(diary.height)"
             weightField.text = "\(diary.weight)"
             listTextView.text = diary.memo
-        } else {
-            print("새로 저장하는 작업")
         }
         self.navigationController?.navigationBar.topItem?.title = dateForTopTitle?.removeZeroDateFormatter
         configureUI()

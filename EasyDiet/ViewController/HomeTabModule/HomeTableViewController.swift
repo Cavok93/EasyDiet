@@ -85,7 +85,6 @@ class HomeTableViewController: UITableViewController {
                 heightLabel.text = "\(diary.height)"
                 memoLabel.text = diary.memo
                 bmiLabel.text = bmiConverter(diary.weight, diary.height)
-                
             }
         }
         subDateLabel.text = calendar.selectedDate?.dateDotFormatter
@@ -103,6 +102,9 @@ class HomeTableViewController: UITableViewController {
     private func configureCalendar() {
         calendar.delegate = self
         calendar.dataSource = self
+        calendar.appearance.subtitleDefaultColor = UIColor.systemBlue
+        calendar.appearance.titleOffset = CGPoint(x: 0, y: -5)
+        calendar.appearance.subtitleOffset = CGPoint(x: 0, y: 5 )
         calendar.appearance.separators = .interRows
         calendar.headerHeight = 0
         calendar.scope = .month
@@ -160,11 +162,20 @@ class HomeTableViewController: UITableViewController {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let okAction = UIAlertAction(title: "삭제", style: .default) { [weak self] _  in
             guard let strongSelf = self else { return }
-            let filteredDiaries = strongSelf.diaries.filter { $0.date == strongSelf.calendar.selectedDate }
-            print("내가 고른 엔티티야!",filteredDiaries.first?.date)
-            DataManager.shared.deleteDietEntity(entity: filteredDiaries.first ?? DiaryEntity(), context: DataManager.shared.mainContext)
-            strongSelf.calendar.reloadData()
-            strongSelf.tableView.reloadData()
+            var filteredDiaries = strongSelf.diaries.filter { $0.date == strongSelf.calendar.selectedDate }
+            if !filteredDiaries.isEmpty {
+                DataManager.shared.deleteDietEntity(entity: filteredDiaries.first) {
+                    filteredDiaries.removeAll()
+                    NotificationCenter.default.post(name: Notification.Name.didInputData, object: nil)
+                    strongSelf.weightLabel.text = "\(filteredDiaries.first?.weight ?? strongSelf.defaultWeight)"
+                    strongSelf.heightLabel.text = "\(filteredDiaries.first?.height ?? strongSelf.defaultHeight)"
+                    strongSelf.memoLabel.text = filteredDiaries.first?.memo ?? strongSelf.defaultMemo
+                    strongSelf.bmiLabel.text = strongSelf.bmiConverter(filteredDiaries.first?.weight ?? strongSelf.defaultWeight , filteredDiaries.first?.height ?? strongSelf.defaultHeight)
+                    strongSelf.calendar.reloadData()
+                    strongSelf.tableView.reloadData()
+                    strongSelf.showToast(message: "삭제되었습니다.")
+                }
+            }
         }
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         okAction.setValue(UIColor.red, forKey: "titleTextColor")
@@ -174,15 +185,12 @@ class HomeTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(#function)
-        print(diaries.count)
         guard let navigationController = segue.destination as? UINavigationController, let vc = navigationController.children.first as? DetailTableViewController else { return }
         vc.dateForTopTitle = calendar.selectedDate
         let filteredDiaries = diaries.filter { $0.date == calendar.selectedDate }
         vc.diary = filteredDiaries.first
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.section, indexPath.row)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -244,10 +252,11 @@ class HomeTableViewController: UITableViewController {
         configureTableView()
         calendar.select(Date())
         subDateLabel.text = calendar.selectedDate?.dateDotFormatter
-        diaries = DataManager.shared.fetchDiaryEntity(context: DataManager.shared.mainContext)
+        diaries = DataManager.shared.fetchDiaryEntity()
         token = NotificationCenter.default.addObserver(forName: Notification.Name.didInputData, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             guard let strongSelf = self else { return }
-            strongSelf.diaries = DataManager.shared.fetchDiaryEntityByOrderBasedDate(context: DataManager.shared.mainContext)
+            strongSelf.diaries = DataManager.shared.fetchDiaryEntityByOrderBasedDate()
+            //MARK: 가장 마지막에 저장된 데이터를 가져오기 위해 (왜냐면 앞서저장한 데이터가 가장 마지막에 저장되기 떄문에)
             strongSelf.weightLabel.text = "\(strongSelf.diaries.first?.weight ?? strongSelf.defaultWeight)"
             strongSelf.heightLabel.text = "\(strongSelf.diaries.first?.height ?? strongSelf.defaultHeight)"
             strongSelf.memoLabel.text = strongSelf.diaries.first?.memo ?? strongSelf.defaultMemo
@@ -302,7 +311,6 @@ class HomeTableViewController: UITableViewController {
 
 extension HomeTableViewController: FSCalendarDelegate {
     func calendarCurrentPageDidChange(_ calendar: FSCalendar) {
-        print(calendar)
         calendarHeaderLabel.text = calendar.currentPage.dateCalendarTitleFormatter
     }
     
@@ -325,6 +333,12 @@ extension HomeTableViewController: FSCalendarDelegate {
         let targetDay = cal.date(byAdding: dateComponents, to: maximumDate)
         guard let targetDay = targetDay else { return Date()}
         return targetDay.addingTimeInterval( 2.year)
+    }
+    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
+//        cell.backgroundColor = UIColor.red
+        cell.selectedBackgroundView?.backgroundColor = UIColor.black
+        
+        calendar.rowHeight = 100
     }
 }
 

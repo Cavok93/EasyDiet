@@ -12,6 +12,18 @@ import Charts
 
 
 class GraphTableViewController: UITableViewController {
+    enum State {
+        case isOn
+        case isOff
+        var image: UIImage {
+            switch self {
+            case .isOn:
+                return UIImage(systemName: "sun.max.fill") ?? UIImage()
+            case .isOff:
+                return UIImage(systemName: "sun.max") ?? UIImage()
+            }
+        }
+    }
     
     var diaries = [DiaryEntity]()
     var selectedRow = 0
@@ -22,6 +34,7 @@ class GraphTableViewController: UITableViewController {
     private var goalLine: ChartLimitLine?
     static let goalKey = "goalKey"
     
+    @IBOutlet weak var goalWeighAlphaControllButton: UIButton!
     @IBOutlet weak var goalWeightSettingButton: UIBarButtonItem!
     @IBOutlet weak var standardDateLabel: UILabel!
     @IBOutlet weak var informationView: UIView!
@@ -103,25 +116,20 @@ class GraphTableViewController: UITableViewController {
         entries =  diaries.map { (diary: DiaryEntity) -> ChartDataEntry  in
             return  ChartDataEntry(x: ((diary.date?.timeIntervalSince1970 ?? 0.0) - referenceTimeInterval) / (1.day) , y:  Double(diary.weight))
         }
-        //MARK: 여기까지 시간 기준 x, y축 정렬 완료
         
         let sortedByMaxWeightEntries = entries.sorted {  $0.y < $1.y  }
-        //MARK: 여기 까지 y축을 그리기 위해서 몸무게 최댓값 도출 (최대 최소 값 표현용 entries)
         
-        let maximumWeight = sortedByMaxWeightEntries.last?.y ?? 0.0 //MARK: 최대 몸무게
-        let minimumWeight = 0 //MARK: 최소 몸무게
-        //MARK: 여기까지 y축 최대값 값 고정
+        let maximumWeight = sortedByMaxWeightEntries.last?.y ?? 0.0
+        let minimumWeight = 0
         
-        
-        let savedFirstDateXpoint = entries.first?.x ?? 0.0//MARK: 저장된 첫번째 시간
-        let savedLastDateXpoint = entries.last?.x ?? 0.0 //MARK: 저장된 마지막 시간
+        let savedFirstDateXpoint = entries.first?.x ?? 0.0
+        let savedLastDateXpoint = entries.last?.x ?? 0.0
         
         let savedFirstWeightYpoint = entries.first?.y ?? 0.0 //MARK: 저장된 첫번째 몸무게
         let savedLastWeightYpoint = entries.last?.y ?? 0.0 //MARK: 저장된 마지막 몸무게
         
         lineChartView.leftAxis.axisMaximum = Double(maximumWeight) + Double(20.0)
         lineChartView.leftAxis.axisMinimum = Double(minimumWeight)
-        
         
         lineChartView.xAxis.axisMinimum = savedFirstDateXpoint - marginDate
         lineChartView.xAxis.axisMaximum = savedLastDateXpoint + marginDate
@@ -156,16 +164,20 @@ class GraphTableViewController: UITableViewController {
             } else  {
                 lineChartView.leftAxis.axisMaximum = Double(maximumWeight) + Double(20)
             }
+            
+            goalLine = nil
+            lineChartView.leftAxis.removeAllLimitLines()
             goalLine = ChartLimitLine(limit: goalWeightValue, label: "목표 체중: \(goalWeightValue)kg")
             goalLine?.lineColor = UIColor.darkGray
             goalLine?.valueTextColor = UIColor.darkGray
             goalLine?.valueFont = UIFont.systemFont(ofSize: 13.0, weight: .semibold)
             goalLine?.lineDashLengths = [5]
             lineChartView.leftAxis.addLimitLine(goalLine ?? ChartLimitLine())
+            goalWeighAlphaControllButton.setImage(State.isOn.image, for: .normal)
         } else {
-            print("goalLine = nil")
             goalLine = nil
             lineChartView.leftAxis.removeAllLimitLines()
+            goalWeighAlphaControllButton.setImage(State.isOff.image, for: .normal)
             return
         }
     }
@@ -216,7 +228,7 @@ class GraphTableViewController: UITableViewController {
                 strongSelf.goalLine?.valueFont = UIFont.systemFont(ofSize: 13.0, weight: .semibold)
                 strongSelf.goalLine?.lineDashLengths = [5]
                 strongSelf.lineChartView.leftAxis.addLimitLine(strongSelf.goalLine ?? ChartLimitLine())
-                
+                strongSelf.goalWeighAlphaControllButton.setImage(State.isOn.image, for: .normal)
                 if goalWeightValue > Double(strongSelf.diaries.last?.weight ?? 0.0) {
                     strongSelf.lineChartView.leftAxis.axisMaximum = goalWeightValue + Double(20)
                 } else {
@@ -252,6 +264,24 @@ class GraphTableViewController: UITableViewController {
         }
     }
     
+    
+    @IBAction func showOrHideHighlightLine(_ sender: Any) {
+        if goalWeighAlphaControllButton.image(for: .normal) == State.isOff.image {
+            goalWeighAlphaControllButton.setImage(State.isOn.image, for: .normal)
+            goalLine?.valueTextColor = UIColor.darkGray
+            goalLine?.lineColor = UIColor.darkGray
+        } else if goalWeighAlphaControllButton.image(for: .normal) == State.isOn.image  {
+            goalWeighAlphaControllButton.setImage(State.isOff.image, for: .normal)
+            goalLine?.valueTextColor = UIColor.clear
+            goalLine?.lineColor  = UIColor.clear
+        } else {
+            return
+        }
+        lineChartView.notifyDataSetChanged()
+        tableView.reloadData()
+        
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         informationView.layer.shadowColor = UIColor.black.cgColor
@@ -269,23 +299,19 @@ class GraphTableViewController: UITableViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        diaries = DataManager.shared.fetchDiaryEntity(context: DataManager.shared.mainContext)
+        diaries = DataManager.shared.fetchDiaryEntity()
         token = NotificationCenter.default.addObserver(forName: Notification.Name.didInputData, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             guard let strongSelf = self else { return }
-            strongSelf.diaries = DataManager.shared.fetchDiaryEntity(context: DataManager.shared.mainContext)
+            strongSelf.diaries = DataManager.shared.fetchDiaryEntity()
             strongSelf.setData(formatter: "d일", marginDate: 7)
             strongSelf.dateSementControl.selectedSegmentIndex = 0
             strongSelf.lineChartView.data?.notifyDataChanged()
             strongSelf.lineChartView.notifyDataSetChanged()
             strongSelf.tableView.reloadData()
         }
-        
         
         configureTableView()
         configureLineChartView()
@@ -362,19 +388,6 @@ extension GraphTableViewController: ChartViewDelegate {
         calculateWeight(initialWeight, seletedWeight)
     }
     
-    func chartValueNothingSelected(_ chartView: ChartViewBase) {
-        print(#function)
-    }
-    func chartViewDidEndPanning(_ chartView: ChartViewBase) {
-        print(#function)
-    }
-    func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
-        //        print(#function, dX, dY)
-        
-    }
-    func chartView(_ chartView: ChartViewBase, animatorDidStop animator: Animator) {
-        print(#function)
-    }
     func chartScaled(_ chartView: ChartViewBase, scaleX: CGFloat, scaleY: CGFloat) {
         let range = lineChartView.xAxis.axisRange
         let xAxisScale = lineChartView.scaleX
@@ -467,8 +480,8 @@ class CustomField: UITextField {
             || action == #selector(UIResponderStandardEditActions.toggleUnderline(_:))
             || action == #selector(UIResponderStandardEditActions.increaseSize(_:))
             || action == #selector(UIResponderStandardEditActions.decreaseSize(_:)) {
-                return false
-            }
-            return super.canPerformAction(action, withSender: sender)
+            return false
         }
+        return super.canPerformAction(action, withSender: sender)
+    }
 }

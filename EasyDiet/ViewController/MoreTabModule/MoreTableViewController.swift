@@ -24,33 +24,27 @@ class MoreTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         tableView.tableFooterView = UIView(frame: .zero)
-        tableView.backgroundColor = UIColor.systemBackground
-        
     }
-    
-    
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.frame.size.width = tableView.frame.size.width
+        view.backgroundColor = UIColor.systemGray6
+        return view
+    }
+ 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.estimatedRowHeight
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UITableView.automaticDimension
-        
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch  section {
-        case 0:
-            return "기본정보"
-        case 1:
-            return "문서"
-        case 2:
-            return "데이터"
-        default:
-            return nil
+        if section == 0 {
+            return 0
         }
+       return 30
     }
-    
+ 
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case 0:
@@ -73,7 +67,7 @@ class MoreTableViewController: UITableViewController {
         case 1:
             print()
         case 2:
-            let alert = UIAlertController(title: "안내", message: "모든 데이터를 삭제하시겠습니까?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "안내", message: "모든 데이터를 삭제하시겠습니까?\n삭제한 데이터는 복구가 불가능합니다.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "삭제", style: .default) { _ in
                 DataManager.shared.batchDelete()
                 Operation.shared.isSave = nil
@@ -99,18 +93,6 @@ class MoreTableViewController: UITableViewController {
 
 extension MoreTableViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        switch result {
-        case .sent:
-            print("")
-        case .saved:
-            print("")
-        case .cancelled:
-            print("")
-        case .failed:
-            print("")
-        default:
-            break
-        }
         controller.dismiss(animated: true, completion: nil)
     }
 }
