@@ -8,7 +8,7 @@ import UIKit
 
 
 extension UIViewController {
-    func showToast(message : String, font: UIFont = UIFont.boldSystemFont(ofSize: 15.0)) {
+    func showToast(message : String, font: UIFont = UIFont(name: "OTSBAggroL", size: 14.0) ?? UIFont()) {
         
         if let tabbar =  (self.tabBarController)?.tabBar {
             let tabBarHeight = tabbar.frame.size.height

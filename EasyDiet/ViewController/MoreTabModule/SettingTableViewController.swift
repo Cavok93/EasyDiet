@@ -29,10 +29,12 @@ class SettingTableViewController: UITableViewController {
         toolBar.frame.size.width = tableView.frame.width
         toolBar.sizeToFit()
         
-        let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self , action: #selector(afterCanceled))
+        let cancelButton = UIBarButtonItem(title: "취소", style: .done, target: self , action: #selector(afterCanceled))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let centerTitleButton = UIBarButtonItem(title: "[시작 요일 선택]", style: .plain, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(afterSelected))
+        cancelButton.tintColor = UIColor.lightBlueGreen
+        doneButton.tintColor = UIColor.lightBlueGreen
         centerTitleButton.isEnabled = false
         centerTitleButton.setTitleTextAttributes([NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18, weight: .semibold), NSAttributedString.Key.foregroundColor : UIColor.black], for: .disabled)
   

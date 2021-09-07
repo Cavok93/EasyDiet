@@ -22,6 +22,8 @@ class MoreTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.largeTitleTextAttributes = UIFont().largeAggroNavigationFont
+        self.navigationController?.navigationBar.titleTextAttributes = UIFont().generalAggroNavigationFont
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         tableView.tableFooterView = UIView(frame: .zero)
     }
@@ -30,6 +32,7 @@ class MoreTableViewController: UITableViewController {
         let view = UIView()
         view.frame.size.width = tableView.frame.size.width
         view.backgroundColor = UIColor.systemGray6
+        
         return view
     }
  
@@ -50,13 +53,14 @@ class MoreTableViewController: UITableViewController {
             if indexPath.row == 0 {
                 let alert = UIAlertController(title: "안내", message: "공지사항이 없습니다.", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                okAction.setValue(UIColor.lightBlueGreen, forKey: "titleTextColor")
                 alert.addAction(okAction)
                 present(alert, animated: true, completion: nil)
             } else if indexPath.row == 3 {
                 if MFMailComposeViewController.canSendMail() {
                     let compseVC = MFMailComposeViewController()
                     compseVC.mailComposeDelegate = self
-                    compseVC.setToRecipients(["cavook.info@gmail.com"])
+                    compseVC.setToRecipients(["cavok00.info@gmail.com"])
                     self.present(compseVC, animated: true, completion: nil)
                 }
                 else {
@@ -77,6 +81,7 @@ class MoreTableViewController: UITableViewController {
             }
             let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
             okAction.setValue(UIColor.systemRed, forKey: "titleTextColor")
+            cancelAction.setValue(UIColor.lightBlueGreen, forKey: "titleTextColor")
             alert.addAction(okAction)
             alert.addAction(cancelAction)
             self.present(alert, animated: true, completion: nil)

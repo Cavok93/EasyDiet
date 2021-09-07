@@ -13,6 +13,10 @@ extension Float32 {
         let str = String(format: "%.2f", self)
         return str
     }
+    var bmiFormatter: String {
+        let str = String(format: "%.1f", self)
+        return str
+    }
     
     var decimalFormatter: String {
         let numberFormatter = NumberFormatter()

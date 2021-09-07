@@ -28,6 +28,10 @@
 		239BC76D26DDCA1D0044E9DE /* CustomMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC76C26DDCA1D0044E9DE /* CustomMarkerView.swift */; };
 		239BC76F26DE28F30044E9DE /* Extension+Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC76E26DE28F00044E9DE /* Extension+Int.swift */; };
 		239BC77126DF68BB0044E9DE /* Extension+UIBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239BC77026DF68B40044E9DE /* Extension+UIBarButtonItem.swift */; };
+		23A37F5026E64645001B6023 /* OTSBAggroL.otf in Resources */ = {isa = PBXBuildFile; fileRef = 23A37F4D26E64644001B6023 /* OTSBAggroL.otf */; };
+		23A37F5126E64645001B6023 /* OTSBAggroM.otf in Resources */ = {isa = PBXBuildFile; fileRef = 23A37F4E26E64644001B6023 /* OTSBAggroM.otf */; };
+		23A37F5226E64645001B6023 /* OTSBAggroB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 23A37F4F26E64645001B6023 /* OTSBAggroB.otf */; };
+		23A37F5426E6FDEB001B6023 /* Extension+UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A37F5326E6FDEB001B6023 /* Extension+UIFont.swift */; };
 		23D27D5526E0D0C700A67D01 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D5426E0D0C700A67D01 /* SettingTableViewController.swift */; };
 		23D27D5726E0D0ED00A67D01 /* PolicyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D5626E0D0ED00A67D01 /* PolicyTableViewController.swift */; };
 		23D27D6126E1235E00A67D01 /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D6026E1235E00A67D01 /* Extension+UITextField.swift */; };
@@ -61,6 +65,10 @@
 		239BC76C26DDCA1D0044E9DE /* CustomMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarkerView.swift; sourceTree = "<group>"; };
 		239BC76E26DE28F00044E9DE /* Extension+Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Int.swift"; sourceTree = "<group>"; };
 		239BC77026DF68B40044E9DE /* Extension+UIBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIBarButtonItem.swift"; sourceTree = "<group>"; };
+		23A37F4D26E64644001B6023 /* OTSBAggroL.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTSBAggroL.otf; sourceTree = "<group>"; };
+		23A37F4E26E64644001B6023 /* OTSBAggroM.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTSBAggroM.otf; sourceTree = "<group>"; };
+		23A37F4F26E64645001B6023 /* OTSBAggroB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = OTSBAggroB.otf; sourceTree = "<group>"; };
+		23A37F5326E6FDEB001B6023 /* Extension+UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIFont.swift"; sourceTree = "<group>"; };
 		23D27D5426E0D0C700A67D01 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		23D27D5626E0D0ED00A67D01 /* PolicyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyTableViewController.swift; sourceTree = "<group>"; };
 		23D27D6026E1235E00A67D01 /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
@@ -113,6 +121,7 @@
 		238A4F2E26D7CFE90091819A /* EasyDiet */ = {
 			isa = PBXGroup;
 			children = (
+				23A37F4626E63FF8001B6023 /* Font */,
 				23D27D9126E33E3500A67D01 /* Class */,
 				239BC76026DA46200044E9DE /* ViewController */,
 				239BC75D26DA38940044E9DE /* Singleton */,
@@ -157,6 +166,7 @@
 				239BC76E26DE28F00044E9DE /* Extension+Int.swift */,
 				239BC77026DF68B40044E9DE /* Extension+UIBarButtonItem.swift */,
 				23D27D6026E1235E00A67D01 /* Extension+UITextField.swift */,
+				23A37F5326E6FDEB001B6023 /* Extension+UIFont.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -198,6 +208,16 @@
 				239BC76326DA46A60044E9DE /* GraphTableViewController.swift */,
 			);
 			path = GraphTapModule;
+			sourceTree = "<group>";
+		};
+		23A37F4626E63FF8001B6023 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				23A37F4F26E64645001B6023 /* OTSBAggroB.otf */,
+				23A37F4D26E64644001B6023 /* OTSBAggroL.otf */,
+				23A37F4E26E64644001B6023 /* OTSBAggroM.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		23D27D6426E2064300A67D01 /* cell */ = {
@@ -295,7 +315,10 @@
 			files = (
 				238A4F3F26D7CFED0091819A /* LaunchScreen.storyboard in Resources */,
 				238A4F3C26D7CFED0091819A /* Assets.xcassets in Resources */,
+				23A37F5126E64645001B6023 /* OTSBAggroM.otf in Resources */,
+				23A37F5026E64645001B6023 /* OTSBAggroL.otf in Resources */,
 				239BC76B26DDC9DE0044E9DE /* CustomMarkerView.xib in Resources */,
+				23A37F5226E64645001B6023 /* OTSBAggroB.otf in Resources */,
 				238A4F3726D7CFE90091819A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,6 +394,7 @@
 				23D27D9326E33E5200A67D01 /* CustomTextField.swift in Sources */,
 				239BC75C26DA31FA0044E9DE /* MoreTableViewController.swift in Sources */,
 				23D27D6126E1235E00A67D01 /* Extension+UITextField.swift in Sources */,
+				23A37F5426E6FDEB001B6023 /* Extension+UIFont.swift in Sources */,
 				239BC74E26D89E870044E9DE /* Extension+Date.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,7 +553,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = simjungsub.EasyDiet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -549,7 +573,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = simjungsub.EasyDiet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

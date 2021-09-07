@@ -53,7 +53,7 @@ extension QuestionViewController: UITableViewDataSource {
             if  let text = cell.answerLabel.text {
                 let font = UIFont.boldSystemFont(ofSize: 20.0)
             let attributedString = NSMutableAttributedString(string: text)
-            attributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: (text as NSString).range(of: "+"))
+            attributedString.addAttribute(.foregroundColor, value: UIColor.lightBlueGreen, range: (text as NSString).range(of: "+"))
                 attributedString.addAttribute(.font, value: font, range: (text as NSString).range(of: "+"))
             cell.answerLabel.attributedText = attributedString
             }

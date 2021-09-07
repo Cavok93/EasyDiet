@@ -17,8 +17,13 @@ extension UIColor {
 }
 
 extension UIColor {
-    static var lightSky: UIColor {
-        let color = UIColor(red: 218, green: 230, blue: 255)
+    static var lightBlueGreen: UIColor {
+        let color = UIColor(red: 3, green: 181, blue: 148)
+        return color ?? UIColor()
+    }
+    
+    static var lightGreen: UIColor {
+        let color = UIColor(red: 61, green: 237, blue: 151)
         return color ?? UIColor()
     }
 }

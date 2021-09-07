@@ -21,7 +21,7 @@ class DetailTableViewController: UITableViewController {
     @IBOutlet weak var listTextView: UITextView!
     
     @IBAction func saveContents(_ sender: Any) {
-        guard let sortedByCalendarDate = dateForTopTitle  else { fatalError() }
+        guard let sortedByCalendarDate = dateForTopTitle  else { return }
         guard let heightStr = heightField.text, heightStr.count > 0, let heightNum = Float32(heightStr) else { return }
         guard let weightStr = weightField.text, weightStr.count > 0, let weightNum = Float32(weightStr)else { return }
         guard let textViewStr = listTextView.text, textViewStr.count > 0 else { return }
@@ -105,13 +105,17 @@ class DetailTableViewController: UITableViewController {
             listTextView.text = diary.memo
         }
         self.navigationController?.navigationBar.topItem?.title = dateForTopTitle?.removeZeroDateFormatter
+        self.navigationController?.navigationBar.titleTextAttributes = UIFont().generalAggroNavigationFont
+        
         configureUI()
         heightField.becomeFirstResponder()
         let toolBar = UIToolbar()
         toolBar.frame.size.width = tableView.frame.width
         toolBar.sizeToFit()
-        let cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self , action: #selector(afterCanceled))
+        let cancelButton = UIBarButtonItem(title: "취소", style: .done, target: self , action: #selector(afterCanceled))
+        cancelButton.tintColor = UIColor.lightBlueGreen
         let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(self.afterCompleted))
+        doneButton.tintColor = UIColor.lightBlueGreen
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolBar.setItems([cancelButton, flexibleSpace, doneButton], animated: false )
         toolBar.isUserInteractionEnabled = true

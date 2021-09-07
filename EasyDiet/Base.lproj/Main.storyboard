@@ -7,6 +7,17 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="OTSBAggroB.otf">
+            <string>OTSBAggroB</string>
+        </array>
+        <array key="OTSBAggroL.otf">
+            <string>OTSBAggroL</string>
+        </array>
+        <array key="OTSBAggroM.otf">
+            <string>OTSBAggroM</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--입력-->
         <scene sceneID="kvv-cn-GXv">
@@ -26,24 +37,24 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="신장" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeU-UH-BQQ">
-                                                    <rect key="frame" x="20" y="17.5" width="30" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="20" y="19" width="28" height="18"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="15"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b7S-8F-tMb">
-                                                    <rect key="frame" x="70" y="11" width="100" height="34"/>
+                                                    <rect key="frame" x="68" y="11" width="100" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="Sxr-ZK-hm9"/>
                                                     </constraints>
-                                                    <color key="textColor" systemColor="systemBlueColor"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroM" family="SB AggroOTF" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPq-1A-DDx">
-                                                    <rect key="frame" x="176" y="17.5" width="24" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="174" y="19" width="25" height="18"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="15"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -54,7 +65,7 @@
                                                 <constraint firstItem="iPq-1A-DDx" firstAttribute="leading" secondItem="b7S-8F-tMb" secondAttribute="trailing" constant="6" id="JF3-vr-hh4"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="iPq-1A-DDx" secondAttribute="trailing" constant="20" id="SJR-qa-Xq6"/>
                                                 <constraint firstItem="b7S-8F-tMb" firstAttribute="top" secondItem="CpA-69-JEh" secondAttribute="topMargin" id="kGR-xD-LU0"/>
-                                                <constraint firstItem="iPq-1A-DDx" firstAttribute="firstBaseline" secondItem="b7S-8F-tMb" secondAttribute="firstBaseline" id="pnU-la-Pfd"/>
+                                                <constraint firstItem="iPq-1A-DDx" firstAttribute="centerY" secondItem="b7S-8F-tMb" secondAttribute="centerY" id="mM6-w4-1wh"/>
                                                 <constraint firstItem="b7S-8F-tMb" firstAttribute="leading" secondItem="UeU-UH-BQQ" secondAttribute="trailing" constant="20" id="yy1-yv-Ehz"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -67,24 +78,24 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="체중" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HJh-8J-7sC">
-                                                    <rect key="frame" x="20" y="17.5" width="30" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="20" y="19" width="28.5" height="18"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="15"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nHV-fk-3qy">
-                                                    <rect key="frame" x="70" y="11" width="100" height="34"/>
+                                                    <rect key="frame" x="68.5" y="11" width="100" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="nRl-Ry-l1y"/>
                                                     </constraints>
-                                                    <color key="textColor" systemColor="systemBlueColor"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroM" family="SB AggroOTF" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5X-Po-adl">
-                                                    <rect key="frame" x="176" y="17.5" width="19" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="174.5" y="19" width="21" height="18"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="15"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -93,7 +104,7 @@
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="f5X-Po-adl" secondAttribute="trailing" constant="20" id="6xR-hW-aXz"/>
                                                 <constraint firstItem="nHV-fk-3qy" firstAttribute="leading" secondItem="HJh-8J-7sC" secondAttribute="trailing" constant="20" id="KEG-9o-7ur"/>
                                                 <constraint firstItem="HJh-8J-7sC" firstAttribute="centerY" secondItem="nHV-fk-3qy" secondAttribute="centerY" id="fEr-Vg-NXL"/>
-                                                <constraint firstItem="f5X-Po-adl" firstAttribute="firstBaseline" secondItem="nHV-fk-3qy" secondAttribute="firstBaseline" id="tze-ZP-dyF"/>
+                                                <constraint firstItem="f5X-Po-adl" firstAttribute="centerY" secondItem="nHV-fk-3qy" secondAttribute="centerY" id="pvv-pe-XJS"/>
                                                 <constraint firstItem="nHV-fk-3qy" firstAttribute="top" secondItem="q7E-vw-dzp" secondAttribute="topMargin" id="v4U-np-6zX"/>
                                                 <constraint firstItem="HJh-8J-7sC" firstAttribute="leading" secondItem="q7E-vw-dzp" secondAttribute="leadingMargin" id="wfU-fK-xUo"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="nHV-fk-3qy" secondAttribute="bottom" id="xfT-AR-SrX"/>
@@ -111,7 +122,7 @@
                                                     <rect key="frame" x="20" y="11" width="374" height="124"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <color key="textColor" systemColor="labelColor"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
@@ -132,13 +143,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="입력" id="dcW-sc-MDM">
-                        <barButtonItem key="leftBarButtonItem" title="취소" id="tOj-iv-4na">
-                            <color key="tintColor" systemColor="systemRedColor"/>
+                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" style="done" id="tOj-iv-4na">
+                            <color key="tintColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="cancelContents:" destination="IkC-xm-dhO" id="DBE-Ac-x4N"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="저장" id="qL5-Km-h92">
+                        <barButtonItem key="rightBarButtonItem" title="저장" style="done" id="qL5-Km-h92">
+                            <color key="tintColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="saveContents:" destination="IkC-xm-dhO" id="P1C-ha-yPU"/>
                             </connections>
@@ -164,6 +176,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="HI1-YY-lCn" kind="relationship" relationship="viewControllers" id="lPn-F0-ieR"/>
@@ -184,6 +197,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="SDz-Ze-cyK">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -212,14 +226,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="계산기준일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1q-Dw-ijL">
-                                                    <rect key="frame" x="20" y="11" width="56.5" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                    <rect key="frame" x="20" y="11" width="60.5" height="16"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="13"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aJ-Cm-xIi">
-                                                    <rect key="frame" x="96.5" y="11" width="297.5" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                    <rect key="frame" x="100.5" y="11" width="293.5" height="16"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="13"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -244,6 +258,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OgJ-Pf-5hY">
                                                     <rect key="frame" x="373" y="4" width="21" height="22"/>
+                                                    <color key="tintColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" image="sun.max" catalog="system"/>
                                                     <connections>
                                                         <action selector="showOrHideHighlightLine:" destination="K1y-nS-JUQ" eventType="touchUpInside" id="ZJH-8q-gJg"/>
@@ -280,8 +295,8 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rV-KR-HbF">
                                                                     <rect key="frame" x="8" y="0.0" width="162.5" height="28"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
-                                                                    <color key="textColor" systemColor="systemBlueColor"/>
+                                                                    <fontDescription key="fontDescription" name="OTSBAggroM" family="SB AggroOTF" pointSize="19"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -299,8 +314,8 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26U-c3-Z99">
                                                                     <rect key="frame" x="0.0" y="0.0" width="170.5" height="28"/>
                                                                     <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" name="OTSBAggroM" family="SB AggroOTF" pointSize="15"/>
+                                                                    <color key="textColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q7Y-aT-eXe" customClass="CustomField" customModule="EasyDiet" customModuleProvider="target">
@@ -411,7 +426,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="그래프" largeTitleDisplayMode="always" id="eS7-Dg-oRO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="boX-PI-OBe">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="boX-PI-OBe">
+                            <color key="tintColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="saveGoalWeight:" destination="K1y-nS-JUQ" id="8bg-8p-AO0"/>
                             </connections>
@@ -459,9 +475,11 @@
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.left" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="5bm-ke-Mda">
                                                                     <rect key="frame" x="14" y="16" width="22" height="18.5"/>
+                                                                    <color key="tintColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ag-Dw-G5D">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <color key="tintColor" red="0.12549019610000001" green="0.69803921570000005" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -481,8 +499,8 @@
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lg-st-8zT">
                                                                     <rect key="frame" x="0.0" y="0.0" width="254" height="50"/>
-                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                                    <color key="textColor" systemColor="systemBlueColor"/>
+                                                                    <fontDescription key="fontDescription" name="OTSBAggroM" family="SB AggroOTF" pointSize="20"/>
+                                                                    <color key="textColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -498,9 +516,14 @@
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="tp0-vr-Ubn">
                                                                     <rect key="frame" x="14" y="16" width="22" height="18.5"/>
+                                                                    <color key="tintColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3H-qY-iVa">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <color key="tintColor" red="0.12549019610000001" green="0.69803921570000005" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <state key="normal">
+                                                                        <color key="titleColor" systemColor="systemBlueColor"/>
+                                                                    </state>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -566,11 +589,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q61-Oh-STU">
-                                                    <rect key="frame" x="20" y="4" width="374" height="18"/>
+                                                    <rect key="frame" x="20" y="4" width="374" height="17"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWt-e7-8X7">
-                                                            <rect key="frame" x="8" y="0.0" width="358" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                            <rect key="frame" x="8" y="0.0" width="358" height="17"/>
+                                                            <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="14"/>
                                                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -600,12 +623,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Hr-KF-VE2">
-                                                    <rect key="frame" x="20" y="11" width="374" height="119.5"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="113.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0H-d5-6OY">
-                                                            <rect key="frame" x="8" y="8" width="94" height="44.5"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="37"/>
-                                                            <color key="textColor" systemColor="systemBlueColor"/>
+                                                            <rect key="frame" x="8" y="8" width="110.5" height="38.5"/>
+                                                            <fontDescription key="fontDescription" name="OTSBAggroB" family="SB AggroOTF" pointSize="32"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zeB-aV-vKg">
@@ -614,57 +637,58 @@
                                                                 <constraint firstAttribute="width" constant="30" id="IMD-Zi-Glo"/>
                                                                 <constraint firstAttribute="height" constant="30" id="zAX-sg-1cG"/>
                                                             </constraints>
+                                                            <color key="tintColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <state key="normal" image="trash.circle" catalog="system">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22"/>
                                                             </state>
                                                         </button>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="iNR-Sd-af1">
-                                                            <rect key="frame" x="150" y="8" width="30.5" height="44.5"/>
+                                                            <rect key="frame" x="169.5" y="8" width="32" height="38.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="900" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="신장:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sh-o1-c9a">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="30.5" height="22.5"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="32" height="19.5"/>
+                                                                    <fontDescription key="fontDescription" name="OTSBAggroM" family="SB AggroOTF" pointSize="13"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="900" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="BMI:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUq-LI-Mtm">
-                                                                    <rect key="frame" x="0.0" y="22.5" width="30.5" height="22"/>
-                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <rect key="frame" x="0.0" y="19.5" width="32" height="19"/>
+                                                                    <fontDescription key="fontDescription" name="OTSBAggroM" family="SB AggroOTF" pointSize="13"/>
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0b5-AM-sqi">
-                                                            <rect key="frame" x="184.5" y="10" width="40" height="18"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                            <color key="textColor" systemColor="systemBlueColor"/>
+                                                            <rect key="frame" x="205.5" y="9" width="47" height="17"/>
+                                                            <fontDescription key="fontDescription" name="OTSBAggroM" family="SB AggroOTF" pointSize="14"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WgZ-1g-OjM">
-                                                            <rect key="frame" x="184.5" y="32.5" width="40" height="18"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                            <color key="textColor" systemColor="systemBlueColor"/>
+                                                            <rect key="frame" x="205.5" y="28.5" width="47" height="17"/>
+                                                            <fontDescription key="fontDescription" name="OTSBAggroM" family="SB AggroOTF" pointSize="14"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D82-Uh-OCM">
-                                                            <rect key="frame" x="105" y="22" width="25" height="26.5"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                                            <color key="textColor" systemColor="systemBlueColor"/>
+                                                            <rect key="frame" x="121.5" y="19" width="28" height="22"/>
+                                                            <fontDescription key="fontDescription" name="OTSBAggroB" family="SB AggroOTF" pointSize="18"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJv-rv-Vmx">
-                                                            <rect key="frame" x="8" y="66.5" width="358" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                            <rect key="frame" x="8" y="60.5" width="358" height="17"/>
+                                                            <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5y-tC-qDv">
-                                                            <rect key="frame" x="8" y="95.5" width="36" height="16"/>
+                                                            <rect key="frame" x="8" y="89.5" width="38" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="16" id="FRi-On-PwM"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="10"/>
+                                                            <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="10"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                             <state key="normal" title="더보기">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -672,9 +696,9 @@
                                                             </state>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBT-h9-5ZR">
-                                                            <rect key="frame" x="226.5" y="12" width="20" height="16"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                            <color key="textColor" systemColor="systemBlueColor"/>
+                                                            <rect key="frame" x="254.5" y="9.5" width="23" height="16"/>
+                                                            <fontDescription key="fontDescription" name="OTSBAggroM" family="SB AggroOTF" pointSize="13"/>
+                                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -727,7 +751,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="달력" largeTitleDisplayMode="always" id="Wcw-1g-Ym5">
-                        <barButtonItem key="rightBarButtonItem" title="오늘" id="HNf-c4-rKZ"/>
+                        <barButtonItem key="rightBarButtonItem" title="오늘" style="done" id="HNf-c4-rKZ">
+                            <color key="tintColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="414" height="1200"/>
                     <connections>
@@ -760,6 +786,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Kom-W8-kje">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -788,8 +815,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="공지사항" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGb-O5-fM9">
-                                                    <rect key="frame" x="20" y="11" width="356.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="20" y="11" width="356.5" height="20"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -810,8 +837,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Qr-dm-nAq">
-                                                    <rect key="frame" x="20" y="11" width="356.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="20" y="11" width="356.5" height="20"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -835,8 +862,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="자주 묻는 질문" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ax9-6f-rUh">
-                                                    <rect key="frame" x="20" y="11" width="356.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="20" y="11" width="356.5" height="20"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -860,8 +887,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="문의하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LCe-yB-7yX">
-                                                    <rect key="frame" x="20" y="11" width="374" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="20"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -886,8 +913,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="개인정보처리방침" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHy-s9-U8m">
-                                                    <rect key="frame" x="20" y="11" width="356.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="20" y="11" width="356.5" height="20"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -915,8 +942,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="전체 데이터 삭제" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6D-oi-2m0">
-                                                    <rect key="frame" x="20" y="11" width="374" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="20"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemRedColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -964,7 +991,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbC-ic-aL1">
                                                     <rect key="frame" x="20" y="11" width="336" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroM" family="SB AggroOTF" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -977,8 +1004,8 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cas-iT-7IG">
-                                                    <rect key="frame" x="20" y="31.5" width="374" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <rect key="frame" x="20" y="31.5" width="374" height="18"/>
+                                                    <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1091,22 +1118,22 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ho-93-1BY">
-                                                    <rect key="frame" x="20" y="11" width="374" height="20.5"/>
+                                                    <rect key="frame" x="20" y="11" width="374" height="20"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="달력 시작 요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6w-za-pAY">
-                                                            <rect key="frame" x="0.0" y="0.0" width="97" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="102.5" height="20"/>
+                                                            <fontDescription key="fontDescription" name="OTSBAggroL" family="SB AggroOTF" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcc-k3-CGw">
-                                                            <rect key="frame" x="117" y="0.0" width="257" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                            <color key="textColor" systemColor="systemBlueColor"/>
+                                                            <rect key="frame" x="122.5" y="0.0" width="251.5" height="20"/>
+                                                            <fontDescription key="fontDescription" name="OTSBAggroM" family="SB AggroOTF" pointSize="17"/>
+                                                            <color key="textColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8KF-3Z-OxM" customClass="CustomField" customModule="EasyDiet" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="20"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="textColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1182,6 +1209,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Lsl-PM-dzh">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.011764705882352941" green="0.70980392156862748" blue="0.58039215686274503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1202,6 +1230,7 @@
         <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <image name="sun.max" catalog="system" width="128" height="124"/>
         <image name="trash.circle" catalog="system" width="128" height="121"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -96,15 +96,23 @@ class HomeTableViewController: UITableViewController {
         if result.isNaN {
             return "\(defaultBmi)"
         }
-        return  result.numberFormatter
+        return  "\(Int(result))"
     }
     
     private func configureCalendar() {
         calendar.delegate = self
         calendar.dataSource = self
-        calendar.appearance.subtitleDefaultColor = UIColor.systemBlue
+        calendar.appearance.subtitleDefaultColor = UIColor.lightBlueGreen
+        calendar.appearance.subtitleFont = UIFont(name: "OTSBAggroL", size: 9.0)
+        calendar.appearance.weekdayFont = UIFont(name: "OTSBAggroM", size: 14.0)
+        calendar.appearance.titleFont = UIFont(name: "OTSBAggroL", size: 13.50)
+        calendar.appearance.weekdayTextColor = UIColor.black
+        calendar.appearance.selectionColor = UIColor.lightBlueGreen
+        calendar.appearance.todayColor = UIColor.white
+        calendar.appearance.subtitleTodayColor = UIColor.lightBlueGreen
+        calendar.appearance.titleTodayColor = UIColor.black
         calendar.appearance.titleOffset = CGPoint(x: 0, y: -5)
-        calendar.appearance.subtitleOffset = CGPoint(x: 0, y: 5 )
+        calendar.appearance.subtitleOffset = CGPoint(x: 0, y: 0)
         calendar.appearance.separators = .interRows
         calendar.headerHeight = 0
         calendar.scope = .month
@@ -160,7 +168,7 @@ class HomeTableViewController: UITableViewController {
 
     @objc private func showMenuAlert() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let okAction = UIAlertAction(title: "삭제", style: .default) { [weak self] _  in
+        let okAction = UIAlertAction(title: "삭제", style: .destructive) { [weak self] _  in
             guard let strongSelf = self else { return }
             var filteredDiaries = strongSelf.diaries.filter { $0.date == strongSelf.calendar.selectedDate }
             if !filteredDiaries.isEmpty {
@@ -178,7 +186,7 @@ class HomeTableViewController: UITableViewController {
             }
         }
         let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        okAction.setValue(UIColor.red, forKey: "titleTextColor")
+        cancelAction.setValue(UIColor.lightBlueGreen, forKey: "titleTextColor")
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
@@ -195,6 +203,8 @@ class HomeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    
+        
         if indexPath.section == 1 && indexPath.row == 1 {
             cell.selectionStyle = .default
         } else {
@@ -248,6 +258,10 @@ class HomeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.largeTitleTextAttributes = UIFont().largeAggroNavigationFont 
+        self.navigationController?.navigationBar.titleTextAttributes = UIFont().generalAggroNavigationFont
+        self.navigationController?.navigationItem.rightBarButtonItem?.setTitleTextAttributes(UIFont().generalAggroNavigationFont, for: .normal)
+        
         configureCalendar()
         configureTableView()
         calendar.select(Date())
@@ -256,7 +270,6 @@ class HomeTableViewController: UITableViewController {
         token = NotificationCenter.default.addObserver(forName: Notification.Name.didInputData, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             guard let strongSelf = self else { return }
             strongSelf.diaries = DataManager.shared.fetchDiaryEntityByOrderBasedDate()
-            //MARK: 가장 마지막에 저장된 데이터를 가져오기 위해 (왜냐면 앞서저장한 데이터가 가장 마지막에 저장되기 떄문에)
             strongSelf.weightLabel.text = "\(strongSelf.diaries.first?.weight ?? strongSelf.defaultWeight)"
             strongSelf.heightLabel.text = "\(strongSelf.diaries.first?.height ?? strongSelf.defaultHeight)"
             strongSelf.memoLabel.text = strongSelf.diaries.first?.memo ?? strongSelf.defaultMemo
