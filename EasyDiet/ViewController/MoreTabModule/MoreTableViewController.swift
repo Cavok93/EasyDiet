@@ -68,8 +68,6 @@ class MoreTableViewController: UITableViewController {
                 }
             }
         case 1:
-            print()
-        case 2:
             let alert = UIAlertController(title: "안내", message: "모든 데이터를 삭제하시겠습니까?\n삭제한 데이터는 복구가 불가능합니다.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "삭제", style: .default) { _ in
                 DataManager.shared.batchDelete()

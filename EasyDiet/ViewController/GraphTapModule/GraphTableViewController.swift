@@ -80,22 +80,44 @@ class GraphTableViewController: UITableViewController {
         lineChartView.scaleYEnabled = false
         
         lineChartView.leftAxis.setLabelCount(10, force: false)
-        lineChartView.leftAxis.labelFont = UIFont(name: "OTSBAggroM", size: 10) ?? UIFont()
+        lineChartView.leftAxis.labelFont = UIFont(name: "OTSBAggroL", size: 10) ?? UIFont()
         lineChartView.leftAxis.labelTextColor = .black
-        lineChartView.leftAxis.axisLineColor = .black
+        lineChartView.leftAxis.axisLineColor = .lightGray
         lineChartView.leftAxis.labelPosition = .outsideChart
-        lineChartView.leftAxis.drawGridLinesEnabled = false
         lineChartView.leftAxis.drawBottomYLabelEntryEnabled = false
-        lineChartView.rightAxis.labelFont = UIFont(name: "OTSBAggroM", size: 10) ?? UIFont()
+        lineChartView.leftAxis.drawGridLinesEnabled = false
+        lineChartView.leftAxis.drawZeroLineEnabled = false
         
-        lineChartView.xAxis.granularityEnabled = true
-        lineChartView.xAxis.granularity = 1.0
-        lineChartView.xAxis.drawGridLinesEnabled = false
-        lineChartView.xAxis.setLabelCount(9, force: true)
+        
+        
+        
+        
+        
+        
+        
+        
+//        lineChartView.drawBordersEnabled = true
+//        lineChartView.borderLineWidth = 0.5
+//        lineChartView.borderColor = UIColor.lightGray
+//        lineChartView.backgroundColor = UIColor.
+        lineChartView.rightAxis.enabled = true
+        lineChartView.rightAxis.gridColor = UIColor.clear
+        lineChartView.rightAxis.labelTextColor = .clear
+        lineChartView.rightAxis.axisLineColor = .lightGray
+        lineChartView.setViewPortOffsets(left: 32, top: 20, right: 32, bottom: 32)
+
+        
+        lineChartView.legend.form = .none
+        lineChartView.xAxis.drawGridLinesEnabled = true //MARK: 수박
+        lineChartView.xAxis.setLabelCount(9, force: true) //MARK: true
         lineChartView.xAxis.labelFont = UIFont(name: "OTSBAggroM", size: 10) ?? UIFont()
         lineChartView.xAxis.labelTextColor = .black
-        lineChartView.xAxis.axisLineColor = .black
+        lineChartView.xAxis.axisLineColor = .clear
         lineChartView.xAxis.labelPosition = .bottom
+        
+
+        lineChartView.xAxis.granularityEnabled = true
+        lineChartView.xAxis.granularity = 1.0
         
         customMarkerView = CustomMarkerView()
         customMarkerView?.chartView = lineChartView
@@ -139,8 +161,10 @@ class GraphTableViewController: UITableViewController {
         dateLabel.text = diaries.last?.date?.dateDotFormatter
         standardDateLabel.text = diaries.first?.date?.fullDateFormatter
         
-        dataSet = LineChartDataSet(entries: entries, label: "몸무게")
+        dataSet = LineChartDataSet(entries: entries, label: "")
         dataSet?.mode = .linear
+        
+        
         dataSet?.lineWidth = 4
         dataSet?.setColor(.lightBlueGreen)
         dataSet?.circleHoleColor = UIColor.white
@@ -157,7 +181,7 @@ class GraphTableViewController: UITableViewController {
         
         let hightlight = Highlight(x: savedLastDateXpoint, y: 0, dataSetIndex: 0)
         lineChartView.highlightValue(hightlight)
-        customMarkerView?.weightLabel.text = "\(savedLastWeightYpoint)kg"
+        customMarkerView?.weightLabel.text = "\(Float32(savedLastWeightYpoint))kg"
         lineChartView.zoomAndCenterViewAnimated(scaleX: (CGFloat(lineChartView.xAxis.axisRange) / CGFloat(marginDate)), scaleY: 0, xValue:  savedLastDateXpoint, yValue: 0, axis: .left, duration: 0.4)
         
         if let goalWeightValue = UserDefaults.standard.object(forKey: GraphTableViewController.goalKey) as? Double {
@@ -172,9 +196,9 @@ class GraphTableViewController: UITableViewController {
             goalLine = nil
             lineChartView.leftAxis.removeAllLimitLines()
             goalLine = ChartLimitLine(limit: goalWeightValue, label: "목표 체중: \(goalWeightValue)kg")
-            goalLine?.lineColor = UIColor.darkGray
-            goalLine?.valueTextColor = UIColor.darkGray
-            goalLine?.valueFont = UIFont(name: "OTSBAggroL", size: 13.0) ?? UIFont()
+            goalLine?.lineColor = UIColor.lightBlueGreen
+            goalLine?.valueTextColor = UIColor.lightBlueGreen
+            goalLine?.valueFont = UIFont(name: "OTSBAggroL", size: 11.0) ?? UIFont()
             goalLine?.lineDashLengths = [5]
             lineChartView.leftAxis.addLimitLine(goalLine ?? ChartLimitLine())
             goalWeighAlphaControllButton.setImage(State.isOn.image, for: .normal)
@@ -194,7 +218,7 @@ class GraphTableViewController: UITableViewController {
         calculateWeight(Float32(savedFirstWeightYpoint), Float32(selectedWeightYpoint))
         let hightlight = Highlight(x: selectedDateXpoint, y: Double.nan, dataSetIndex: 0)
         lineChartView.highlightValue(hightlight)
-        customMarkerView?.weightLabel.text = "\(selectedWeightYpoint)kg"
+        customMarkerView?.weightLabel.text = "\(Float32(selectedWeightYpoint))kg"
         lineChartView.zoomAndCenterViewAnimated(scaleX: (CGFloat(lineChartView.xAxis.axisRange) / 7), scaleY: 0, xValue:  selectedDateXpoint , yValue: 0, axis: .left, duration: 0.4)
         dateSementControl.selectedSegmentIndex = 0
     }
@@ -228,9 +252,9 @@ class GraphTableViewController: UITableViewController {
                 UserDefaults.standard.set(goalWeightValue ,forKey: GraphTableViewController.goalKey)
                 strongSelf.lineChartView.leftAxis.removeAllLimitLines()
                 strongSelf.goalLine = ChartLimitLine(limit: goalWeightValue, label: "목표 체중: \(goalWeightValue)kg")
-                strongSelf.goalLine?.lineColor = UIColor.darkGray
-                strongSelf.goalLine?.valueTextColor = UIColor.darkGray
-                strongSelf.goalLine?.valueFont = UIFont(name: "OTSBAggroL", size: 13.0) ?? UIFont()
+                strongSelf.goalLine?.lineColor = UIColor.lightBlueGreen
+                strongSelf.goalLine?.valueTextColor = UIColor.lightBlueGreen
+                strongSelf.goalLine?.valueFont = UIFont(name: "OTSBAggroL", size: 11.0) ?? UIFont()
                 strongSelf.goalLine?.lineDashLengths = [5]
                 strongSelf.lineChartView.leftAxis.addLimitLine(strongSelf.goalLine ?? ChartLimitLine())
                 strongSelf.goalWeighAlphaControllButton.setImage(State.isOn.image, for: .normal)
@@ -276,8 +300,8 @@ class GraphTableViewController: UITableViewController {
     @IBAction func showOrHideHighlightLine(_ sender: Any) {
         if goalWeighAlphaControllButton.image(for: .normal) == State.isOff.image {
             goalWeighAlphaControllButton.setImage(State.isOn.image, for: .normal)
-            goalLine?.valueTextColor = UIColor.darkGray
-            goalLine?.lineColor = UIColor.darkGray
+            goalLine?.valueTextColor = UIColor.lightBlueGreen
+            goalLine?.lineColor = UIColor.lightBlueGreen
         } else if goalWeighAlphaControllButton.image(for: .normal) == State.isOn.image  {
             goalWeighAlphaControllButton.setImage(State.isOff.image, for: .normal)
             goalLine?.valueTextColor = UIColor.clear
@@ -298,11 +322,10 @@ class GraphTableViewController: UITableViewController {
         informationView.layer.shadowRadius = 12
         informationView.layer.shadowOpacity = 0.12
         informationView.layer.masksToBounds = false
-        informationView.layer.shadowPath = UIBezierPath(roundedRect: self.informationView.bounds, cornerRadius: informationView.layer.cornerRadius).cgPath
-        
+        informationView.layer.shadowPath = UIBezierPath(roundedRect: informationView.bounds , cornerRadius: informationView.layer.cornerRadius).cgPath
         dateLabel.layer.cornerRadius = 10
-        dateLabel.layer.borderWidth = 1.0
-        dateLabel.layer.borderColor = UIColor.lightGray.cgColor
+        dateLabel.layer.borderWidth = 2.0
+        dateLabel.layer.borderColor = UIColor.lightBlueGreen.cgColor
         dateLabel.clipsToBounds = true
     }
     
@@ -310,8 +333,10 @@ class GraphTableViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.largeTitleTextAttributes = UIFont().largeAggroNavigationFont
         self.navigationController?.navigationBar.titleTextAttributes = UIFont().generalAggroNavigationFont
-        let segFont = UIFont(name: "OTSBAggroM", size: 13.0)
-        dateSementControl.setTitleTextAttributes([NSAttributedString.Key.font: segFont ?? UIFont()], for: .normal)
+        let selectedSegFont = UIFont(name: "OTSBAggroM", size: 13.0)
+        let normalSegFont = UIFont(name: "OTSBAggroM", size: 13.0)
+        dateSementControl.setTitleTextAttributes([NSAttributedString.Key.font: selectedSegFont ?? UIFont(),NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
+        dateSementControl.setTitleTextAttributes([NSAttributedString.Key.font: normalSegFont ?? UIFont(),NSAttributedString.Key.foregroundColor: UIColor.darkGray], for: .normal)
         diaries = DataManager.shared.fetchDiaryEntity()
         token = NotificationCenter.default.addObserver(forName: Notification.Name.didInputData, object: nil, queue: OperationQueue.main) { [weak self] (noti) in
             guard let strongSelf = self else { return }
@@ -392,11 +417,12 @@ extension GraphTableViewController: ChartViewDelegate {
         guard let dataSet = chartView.data?.dataSets[highlight.dataSetIndex] else { return }
         let entryIndex = dataSet.entryIndex(entry: entry)
         dateLabel.text = diaries[entryIndex].date?.dateDotFormatter
-        customMarkerView?.weightLabel.text = "\(diaries[entryIndex].weight)kg"
+        customMarkerView?.weightLabel.text = "\(Float32(diaries[entryIndex].weight))kg"
         let seletedWeight = diaries[entryIndex].weight
         let initialWeight = diaries.first?.weight ?? 0.0
         calculateWeight(initialWeight, seletedWeight)
     }
+    
     
     func chartScaled(_ chartView: ChartViewBase, scaleX: CGFloat, scaleY: CGFloat) {
         let range = lineChartView.xAxis.axisRange

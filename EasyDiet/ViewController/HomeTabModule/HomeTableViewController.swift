@@ -103,7 +103,7 @@ class HomeTableViewController: UITableViewController {
         calendar.delegate = self
         calendar.dataSource = self
         calendar.appearance.subtitleDefaultColor = UIColor.lightBlueGreen
-        calendar.appearance.subtitleFont = UIFont(name: "OTSBAggroL", size: 9.0)
+        calendar.appearance.subtitleFont = UIFont(name: "OTSBAggroL", size: 8.4)
         calendar.appearance.weekdayFont = UIFont(name: "OTSBAggroM", size: 14.0)
         calendar.appearance.titleFont = UIFont(name: "OTSBAggroL", size: 13.50)
         calendar.appearance.weekdayTextColor = UIColor.black
@@ -111,12 +111,11 @@ class HomeTableViewController: UITableViewController {
         calendar.appearance.todayColor = UIColor.white
         calendar.appearance.subtitleTodayColor = UIColor.lightBlueGreen
         calendar.appearance.titleTodayColor = UIColor.black
-        calendar.appearance.titleOffset = CGPoint(x: 0, y: -5)
+        calendar.appearance.titleOffset = CGPoint(x: 0, y: -3)
         calendar.appearance.subtitleOffset = CGPoint(x: 0, y: 0)
-        calendar.appearance.separators = .interRows
         calendar.headerHeight = 0
         calendar.scope = .month
-        calendar.appearance.borderRadius = 0
+        calendar.appearance.borderRadius = 1
         calendarHeaderLabel.text = calendar.currentPage.dateCalendarTitleFormatter
         calendar.appearance.titleWeekendColor = UIColor.systemRed
         calendar.appearance.headerDateFormat = "YYYY년 M월"
@@ -205,7 +204,7 @@ class HomeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     
         
-        if indexPath.section == 1 && indexPath.row == 1 {
+        if indexPath.section == 1 && indexPath.row == 0 {
             cell.selectionStyle = .default
         } else {
             cell.selectionStyle = .none
@@ -250,10 +249,6 @@ class HomeTableViewController: UITableViewController {
         currentInformationView.layer.masksToBounds = false
         currentInformationView.layer.shadowPath = UIBezierPath(roundedRect: self.currentInformationView.bounds, cornerRadius: currentInformationView.layer.cornerRadius).cgPath
         
-        seeMoreButton.layer.cornerRadius = 7.6
-        seeMoreButton.layer.borderWidth = 0.8
-        seeMoreButton.layer.borderColor = UIColor.lightGray.cgColor
-        seeMoreButton.clipsToBounds = true
     }
     
     override func viewDidLoad() {
@@ -261,7 +256,6 @@ class HomeTableViewController: UITableViewController {
         self.navigationController?.navigationBar.largeTitleTextAttributes = UIFont().largeAggroNavigationFont 
         self.navigationController?.navigationBar.titleTextAttributes = UIFont().generalAggroNavigationFont
         self.navigationController?.navigationItem.rightBarButtonItem?.setTitleTextAttributes(UIFont().generalAggroNavigationFont, for: .normal)
-        
         configureCalendar()
         configureTableView()
         calendar.select(Date())
