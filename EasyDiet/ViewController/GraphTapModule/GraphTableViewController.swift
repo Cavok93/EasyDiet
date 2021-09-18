@@ -88,24 +88,11 @@ class GraphTableViewController: UITableViewController {
         lineChartView.leftAxis.drawGridLinesEnabled = false
         lineChartView.leftAxis.drawZeroLineEnabled = false
         
-        
-        
-        
-        
-        
-        
-        
-        
-//        lineChartView.drawBordersEnabled = true
-//        lineChartView.borderLineWidth = 0.5
-//        lineChartView.borderColor = UIColor.lightGray
-//        lineChartView.backgroundColor = UIColor.
         lineChartView.rightAxis.enabled = true
         lineChartView.rightAxis.gridColor = UIColor.clear
         lineChartView.rightAxis.labelTextColor = .clear
         lineChartView.rightAxis.axisLineColor = .lightGray
         lineChartView.setViewPortOffsets(left: 32, top: 20, right: 32, bottom: 32)
-
         
         lineChartView.legend.form = .none
         lineChartView.xAxis.drawGridLinesEnabled = true //MARK: 수박
@@ -114,8 +101,6 @@ class GraphTableViewController: UITableViewController {
         lineChartView.xAxis.labelTextColor = .black
         lineChartView.xAxis.axisLineColor = .clear
         lineChartView.xAxis.labelPosition = .bottom
-        
-
         lineChartView.xAxis.granularityEnabled = true
         lineChartView.xAxis.granularity = 1.0
         
@@ -163,7 +148,6 @@ class GraphTableViewController: UITableViewController {
         
         dataSet = LineChartDataSet(entries: entries, label: "")
         dataSet?.mode = .linear
-        
         
         dataSet?.lineWidth = 4
         dataSet?.setColor(.lightBlueGreen)

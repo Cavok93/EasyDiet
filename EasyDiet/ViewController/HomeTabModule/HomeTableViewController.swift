@@ -218,7 +218,7 @@ class HomeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.estimatedRowHeight
     }
-    
+ 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
