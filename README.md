@@ -3,7 +3,8 @@
 
 
 
-<img src = "https://user-images.githubusercontent.com/83950413/135368469-9b7af458-4c71-4e5d-a9b5-f20d4c92e2f3.png" width = "100%" height = "100%"> 
+<p align="center"><img src = "https://user-images.githubusercontent.com/83950413/135366994-5e2c7823-b262-41aa-bef5-b1c626c799a3.png" width = "47%" height = "47%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src = "https://user-images.githubusercontent.com/83950413/135367015-c22b89cf-5298-4a91-9f78-0158bf1c171d.png" width = "47%" height = "47%"> </p>
+
 
 
 #
