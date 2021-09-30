@@ -49,16 +49,18 @@
 ## 핵심
 
 + #### 그래프에 올바른 정보를 표시하는 방법
+     - 그래프의 x축에 날짜정보를 표시(커스터 마이징)하기 위해서 IAxisValueFormatter (Delegate Protocol)을 채용한 클래스를 정의
+     - 적용할 포멧 속성과, 날짜 보정을 위한 속성을 선언하고 옵셔널 랩핑을 통해 Delegate Method에서 값을 적용
+     - 그래프가 fire되게 하는 setDate메소드 안에서 TimeInterval타입의 변수를 생성하고, 저장된 날짜까지의 오차를 저장 
+     - DateFormatter 인스턴스 속성에 파라미터를 저장
+     - IAxisValueFormatter를 채용한 클래스인 ChartXAxisFormatter 인스턴스의 파리미터에 오차와 포멧을 전달하면  ChartXAxisFormatter 내부의 Delegate Method에서 값이 변환되어 처리
+     - 값에 따른 선을 표시하기 위해 ChartDataEntry의 인스턴스인 entries에 오차 보정이 된 날짜 값과, 몸무게를 적용
+     - 메소드를 구현하여 UISegmentedControl의 Index마다 다른 기간을 적용
+
+
 <img src = "https://user-images.githubusercontent.com/83950413/135388939-e0c7095d-eab5-49f3-83b1-3b825c3089a5.png" width = "100%" height = "100%" >
 
 
-+ 그래프의 x축에 날짜정보를 표시(커스터 마이징)하기 위해서 IAxisValueFormatter (Delegate Protocol)을 채용한 클래스를 정의
-+ 적용할 포멧 속성과, 날짜 보정을 위한 속성을 선언하고 옵셔널 랩핑을 통해 Delegate Method에서 값을 적용
-+ 그래프가 fire되게 하는 setDate메소드 안에서 TimeInterval타입의 변수를 생성하고, 저장된 날짜까지의 오차를 저장 
-+ DateFormatter 인스턴스 속성에 파라미터를 저장
-+ IAxisValueFormatter를 채용한 클래스인 ChartXAxisFormatter 인스턴스의 파리미터에 오차와 포멧을 전달하면  ChartXAxisFormatter 내부의 Delegate Method에서 값이 변환되어 처리
-+ 값에 따른 선을 표시하기 위해 ChartDataEntry의 인스턴스인 entries에 오차 보정이 된 날짜 값과, 몸무게를 적용
-+ 메소드를 구현하여 UISegmentedControl의 Index마다 다른 기간을 적용
 
 
 
