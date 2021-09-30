@@ -3,7 +3,7 @@
 
 
 
-<img src = "https://user-images.githubusercontent.com/83950413/135366994-5e2c7823-b262-41aa-bef5-b1c626c799a3.png" width = "48%" height = "48%" align = "center" >  &nbsp; &nbsp; <img src = "https://user-images.githubusercontent.com/83950413/135367015-c22b89cf-5298-4a91-9f78-0158bf1c171d.png" width = "48%" height = "48%" align= "center" >
+<img src = "https://user-images.githubusercontent.com/83950413/135368469-9b7af458-4c71-4e5d-a9b5-f20d4c92e2f3.png" width = "100%" height = "100%"> 
 
 
 #
@@ -12,19 +12,20 @@
 
 
 ## Introduction
->  'Easy Diet' 는 쉽고 편리한 체중 다이어리 앱입니다. 
-체중과 메모를 기록하고, 그것을 토대로 그래프에 시각화 시키는 것이 가능합니다. 
+>  #### 'Easy Diet' 는 쉽고 편리한 체중 다이어리 앱입니다. 체중과 메모를 기록하고, 그것을 토대로 그래프에 시각화 시키는 것이 가능합니다. 
 
-+ 개발 기간 : 2021.08.26 ~ 09.08
-+ 참여 인원 : iOS 1명
-+ 개발 목표
++ #### 개발 기간
+     - 2021.08.26 ~ 09.08
++ #### 참여 인원
+     - iOS 1명
++ #### 개발 목표
      - 달력 기반의 앱을 만들되, 그래프 또한 적용하여 체중 다이어리에 걸맞는 앱을 제작하자
-+ 사용 기술
++ #### 사용 기술
      - Language : Swift
      - Architecture: MVC
     - Framework : UIKit, CoreData
     - Library: Charts, FSCalendar
-+ 배운 점
++ #### 배운 점
   - CoreData의 상태변화를 Notification을 통해 각 컨트롤러에게 전달하게하는 방법.
   - 커스텀 폰트를 적용하는 방법.
   - 텍스트 필드를 버튼처럼 활용하여, PickerView가 보여지게하는 방법.
