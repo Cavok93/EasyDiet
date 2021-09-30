@@ -27,7 +27,7 @@
     - Framework : UIKit, CoreData
     - Library: Charts, FSCalendar
 + #### 배운 점
-  - CoreData의 상태변화를 Notification을 통해 각 컨트롤러에게 전달하게하는 방법.
+  - CoreData의 CRUD를 Notification을 통해 각 컨트롤러에게 전달 방법.
   - 커스텀 폰트를 적용하는 방법.
   - 텍스트 필드를 버튼처럼 활용하여, PickerView가 보여지게하는 방법.
 
