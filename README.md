@@ -1,5 +1,16 @@
 # EasyDiet
 
+
+
+
+<img src = "https://user-images.githubusercontent.com/83950413/135366994-5e2c7823-b262-41aa-bef5-b1c626c799a3.png" width = "48%" height = "48%" align = "center" >  &nbsp; &nbsp; <img src = "https://user-images.githubusercontent.com/83950413/135367015-c22b89cf-5298-4a91-9f78-0158bf1c171d.png" width = "48%" height = "48%" align= "center" >
+
+
+#
+
+
+
+
 ## Introduction
 >  'Easy Diet' 는 쉽고 편리한 체중 다이어리 앱입니다. 
 체중과 메모를 기록하고, 그것을 토대로 그래프에 시각화 시키는 것이 가능합니다. 
