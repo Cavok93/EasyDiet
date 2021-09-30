@@ -31,10 +31,15 @@
   - 커스텀 폰트를 적용하는 방법.
   - 텍스트 필드를 버튼처럼 활용하여, PickerView가 보여지게하는 방법.
 
-
 ## Screen Shot
 
 <img src = "https://user-images.githubusercontent.com/83950413/135060733-92cbb892-54ca-4c53-a802-221eb0a85291.png" width = "20%" height = "20%" > <img src = https://user-images.githubusercontent.com/83950413/135060752-fb16ecda-36f9-44e4-978b-87706a8c500c.png width = "20%" height = "20%" > <img src = "https://user-images.githubusercontent.com/83950413/135060757-e42a515b-4f04-4e2f-ad99-5db69f3fea21.png" width = "20%" height = "20%" > <img src = "https://user-images.githubusercontent.com/83950413/135060762-aa23ea16-cd60-4097-b83b-db581848b674.png" width = "20%" height = "20%" >
+
+## 핵심
+#### 고민그래프에 올바른 정보를 표시하는 방법
+
+
+
 
 
 ## 앱스토어 링크 
