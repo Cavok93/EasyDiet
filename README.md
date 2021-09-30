@@ -36,33 +36,16 @@
 <img src = "https://user-images.githubusercontent.com/83950413/135060733-92cbb892-54ca-4c53-a802-221eb0a85291.png" width = "20%" height = "20%" > <img src = https://user-images.githubusercontent.com/83950413/135060752-fb16ecda-36f9-44e4-978b-87706a8c500c.png width = "20%" height = "20%" > <img src = "https://user-images.githubusercontent.com/83950413/135060757-e42a515b-4f04-4e2f-ad99-5db69f3fea21.png" width = "20%" height = "20%" > <img src = "https://user-images.githubusercontent.com/83950413/135060762-aa23ea16-cd60-4097-b83b-db581848b674.png" width = "20%" height = "20%" >
 
 ## 핵심
-### 1. 그래프에 올바른 정보를 표시하는 방법
-
-<img src = "https://user-images.githubusercontent.com/83950413/135385380-53ab71a4-07ab-4183-b216-292f2b8cdbb8.gif" width = "20%" height = "20%" > 
-
-
-
-1. 가장 먼저 그래프의 x축에 날짜정보를 표시(커스터 마이징)하기 위해서 IAxisValueFormatter (Delegate Protocol)을 채용한 클래스를 정의하고
-2. 적용할 포멧속성과, 날짜 보정을 위한 속성을 선언하고 옵셔널 랩핑을 통해 Delegate Method에서 값을 적용
-<img src = "https://user-images.githubusercontent.com/83950413/135387309-97c8e811-2609-4e45-ae64-e116d08cea0e.png" width = "60%" height = "60%" >
-
++ #### 그래프에 올바른 정보를 표시하는 방법
+     -  그래프의 x축에 날짜정보를 표시(커스터 마이징)하기 위해서 IAxisValueFormatter (Delegate Protocol)을 채용한 클래스를 정의
+     -  적용할 포멧 속성과, 날짜 보정을 위한 속성을 선언하고 옵셔널 랩핑을 통해 Delegate Method에서 값을 적용
+     -  그래프가 fire되게 하는 setDate메소드 안에서 TimeInterval타입의 변수를 생성하고, 1970부터 저장된 날짜까지의 오차를 저장  
+     -  DateFormatter 인스턴스 속성에 파라미터를 저장
+     -  IAxisValueFormatter를 채용한 클래스인 ChartXAxisFormatter 인스턴스의 파리미터에 오차와 포멧을 전달하면  ChartXAxisFormatter 내부의 Delegate Method에서 값이 변환되어 처리
+     -  또한 값에 따른 선을 표시하기 위해 ChartDataEntry의 인스턴스인 entries에 오차보정이 된 날짜값과, 몸무게를 적용
+     -  메소드를 구현하여 UISegmentedControl의 Index마다 다른 기간을 적용
 
 
-
-
-3. 그래프가 fire되게 하는 setDate메소드안에서 TimeInterval타입의 변수를 생성하고, 1970부터 저장된 날짜까지의 오차를 저장  
-4. DateFormatter 인스턴스의 속성에 파라미터를 저장
-5. AxisValueFormatter를 채용한 클래스인 ChartXAxisFormatter 인스턴스의 파리미터에 오차와 포멧을 전달하면  ChartXAxisFormatter 내부의 Delegate Method에서 값이 변환되어 처리
-6. 또한 값에 따른 선을 표시하기 위해 ChartDataEntry의 인스턴스인 entries에 오차보정이 된 날짜값과, 몸무게를 적용
- 
-<img src = "https://user-images.githubusercontent.com/83950413/135387302-5b8a4952-ed14-4bd7-ad2a-24e18e3eec2f.png" width = "76%" height = "76%" > 
-
-
- 
-
-7. 메소드를 구현하여 UISegmentedControl의 Index마다 다른 기간을 적용
-
-<img src = "https://user-images.githubusercontent.com/83950413/135387307-67815a57-3580-4cf0-9643-dc92fd80170b.png" width = "40%" height = "40%" >
 
 
 
