@@ -17,11 +17,9 @@ extension Int {
     var day: TimeInterval {
         return hour * 24
     }
-    var week: TimeInterval {
-        return day * 7
-    }
+   
     var month: TimeInterval {
-        return week * 4
+        return day * 30
     }
     var year: TimeInterval {
         return month * 12

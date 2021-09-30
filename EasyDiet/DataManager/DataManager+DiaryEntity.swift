@@ -33,11 +33,6 @@ extension DataManager {
             let request: NSFetchRequest<DiaryEntity> = DiaryEntity.fetchRequest()
             let sortByDate = NSSortDescriptor(key: #keyPath(DiaryEntity.date), ascending: true)
             request.sortDescriptors = [sortByDate]
-            request.propertiesToFetch = [
-                #keyPath(DiaryEntity.height),
-                #keyPath(DiaryEntity.weight),
-                #keyPath(DiaryEntity.memo)
-            ]
             request.fetchBatchSize = 30
             do {
                 entity = try mainContext.fetch(request)
@@ -54,11 +49,6 @@ extension DataManager {
             let request: NSFetchRequest<DiaryEntity> = DiaryEntity.fetchRequest()
             let sortByDate = NSSortDescriptor(key: #keyPath(DiaryEntity.orderBasedDate), ascending: false)
             request.sortDescriptors = [sortByDate]
-            request.propertiesToFetch = [
-                #keyPath(DiaryEntity.height),
-                #keyPath(DiaryEntity.weight),
-                #keyPath(DiaryEntity.memo)
-            ]
             request.fetchBatchSize = 30
             do {
                 entity = try mainContext.fetch(request)

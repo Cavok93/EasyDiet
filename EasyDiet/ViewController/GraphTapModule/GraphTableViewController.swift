@@ -22,14 +22,14 @@ class GraphTableViewController: UITableViewController {
         }
     }
     
-    var diaries = [DiaryEntity]()
     var selectedRow = 0
-    var entries = [ChartDataEntry]()
     private var token: NSObjectProtocol?
+    static let goalKey = "goalKey"
+    var diaries = [DiaryEntity]()
+    var entries = [ChartDataEntry]()
     private var dataSet: LineChartDataSet?
     private var customMarkerView: CustomMarkerView?
     private var goalLine: ChartLimitLine?
-    static let goalKey = "goalKey"
     
     @IBOutlet weak var goalWeighAlphaControllButton: UIButton!
     @IBOutlet weak var goalWeightSettingButton: UIBarButtonItem!
@@ -110,19 +110,28 @@ class GraphTableViewController: UITableViewController {
     }
     
     private func setData(formatter: String, marginDate: Double) {
+        
+        
         var referenceTimeInterval: TimeInterval = 0
         if let minTimeInterval = (diaries.map { $0.date?.timeIntervalSince1970 ?? 0.0 }).min() {
             referenceTimeInterval = minTimeInterval
         }
-        
         let xValuesFormatter = DateFormatter()
         xValuesFormatter.dateFormat = formatter
-        let xValuesNumberFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: xValuesFormatter)
-        xValuesNumberFormatter.dateFormatter = xValuesFormatter
-        lineChartView.xAxis.valueFormatter = xValuesNumberFormatter
-        entries =  diaries.map { (diary: DiaryEntity) -> ChartDataEntry  in
-            return  ChartDataEntry(x: ((diary.date?.timeIntervalSince1970 ?? 0.0) - referenceTimeInterval) / (1.day) , y:  Double(diary.weight))
+        let xValuesNumberFormatter =
+            ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: xValuesFormatter)
+        xValuesNumberFormatter.dateFormatter =
+            xValuesFormatter
+        lineChartView.xAxis.valueFormatter =
+            xValuesNumberFormatter
+        entries =  diaries.map {
+            (diary: DiaryEntity) -> ChartDataEntry  in
+            return  ChartDataEntry(
+                x:((diary.date?.timeIntervalSince1970 ?? 0.0) - referenceTimeInterval) / (1.day),
+                y:  Double(diary.weight))
         }
+        
+        
         
         let sortedByMaxWeightEntries = entries.sorted {  $0.y < $1.y  }
         
@@ -261,7 +270,7 @@ class GraphTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func changeDateSement(_ sender: UISegmentedControl) {
+    @IBAction func changeDateSegment(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             setData(formatter: "d일" , marginDate: 7)
@@ -279,7 +288,6 @@ class GraphTableViewController: UITableViewController {
             break
         }
     }
-    
     
     @IBAction func showOrHideHighlightLine(_ sender: Any) {
         if goalWeighAlphaControllButton.image(for: .normal) == State.isOff.image {
@@ -430,27 +438,24 @@ extension GraphTableViewController: ChartViewDelegate {
     
 }
 
-class ChartXAxisFormatter: NSObject {
+class ChartXAxisFormatter: NSObject,IAxisValueFormatter {
     fileprivate var dateFormatter: DateFormatter?
     fileprivate var referenceTimeInterval: TimeInterval?
+    
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        guard let dateFormatter = dateFormatter, let referenceTimeInterval = referenceTimeInterval else {
+            return ""
+        }
+        let date = Date(timeIntervalSince1970: value * 1.day + referenceTimeInterval)
+        dateFormatter.locale = Locale(identifier: "ko_kr")
+        return dateFormatter.string(from: date)
+    }
+    
     convenience init(referenceTimeInterval: TimeInterval, dateFormatter: DateFormatter) {
         self.init()
         self.referenceTimeInterval = referenceTimeInterval
         self.dateFormatter = dateFormatter
     }
-}
-
-extension ChartXAxisFormatter: IAxisValueFormatter {
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        guard let dateFormatter = dateFormatter,
-              let referenceTimeInterval = referenceTimeInterval
-        else {
-            return ""
-        }
-        let date = Date(timeIntervalSince1970: value * 1.day + referenceTimeInterval)
-        return dateFormatter.string(from: date)
-    }
-    
 }
 
 extension GraphTableViewController: UITextFieldDelegate {
