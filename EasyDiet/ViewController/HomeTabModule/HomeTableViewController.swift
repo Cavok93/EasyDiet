@@ -47,7 +47,9 @@ class HomeTableViewController: UITableViewController {
     private var token:  NSObjectProtocol?
     private var weekToken: NSObjectProtocol?
     private var diaries = [DiaryEntity]()
+    private var heightAlertController: UIAlertController?
     static let firstWeekDayKey = "firstWeekDayKey"
+    static let heightKey = "heightKey"
     
     @IBOutlet weak var todayBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var calendar: FSCalendar!
@@ -202,8 +204,6 @@ class HomeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    
-        
         if indexPath.section == 1 && indexPath.row == 0 {
             cell.selectionStyle = .default
         } else {

@@ -28,11 +28,13 @@ class DetailTableViewController: UITableViewController {
         if diary == nil  {
             DataManager.shared.createDiaryEntity(height: heightNum, weight: weightNum, memo: textViewStr, date: sortedByCalendarDate) {
                 Operation.shared.isSave = true
+                UserDefaults.standard.set(heightNum, forKey: HomeTableViewController.heightKey)
                 NotificationCenter.default.post(name: Notification.Name.didInputData, object: nil)
             }
         } else {
             DataManager.shared.updateDiaryEntity(entity: diary ?? DiaryEntity(), height: heightNum, weight: weightNum, memo: textViewStr, date: sortedByCalendarDate) {
                 Operation.shared.isSave = false
+                UserDefaults.standard.set(heightNum, forKey: HomeTableViewController.heightKey)
                 NotificationCenter.default.post(name: Notification.Name.didInputData, object: nil)
             }
         }
@@ -104,6 +106,7 @@ class DetailTableViewController: UITableViewController {
             weightField.text = "\(diary.weight)"
             listTextView.text = diary.memo
         }
+        
         self.navigationController?.navigationBar.topItem?.title = dateForTopTitle?.removeZeroDateFormatter
         self.navigationController?.navigationBar.titleTextAttributes = UIFont().generalAggroNavigationFont
         
@@ -123,6 +126,11 @@ class DetailTableViewController: UITableViewController {
         heightField.inputAccessoryView = toolBar
         weightField.inputAccessoryView = toolBar
         listTextView.inputAccessoryView = toolBar
+        guard let heightValue = UserDefaults.standard.object(forKey: HomeTableViewController.heightKey) as? Float32 else {
+            return
+        }
+        heightField.text = "\(heightValue)"
+        weightField.becomeFirstResponder()
     }
     
     override func viewDidLayoutSubviews() {

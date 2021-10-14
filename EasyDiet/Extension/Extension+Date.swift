@@ -8,8 +8,6 @@
 import Foundation
 
 
-
-
 extension Date {
     var year: Int {
         let cal = Calendar.current
