@@ -162,13 +162,13 @@ class GraphTableViewController: UITableViewController {
         dataSet?.setColor(.lightBlueGreen)
         dataSet?.circleHoleColor = UIColor.white
         dataSet?.setCircleColor(UIColor.lightBlueGreen)
-        dataSet?.fill = Fill(color: UIColor.clear)
+        dataSet?.fill = ColorFill(color: UIColor.clear)
         dataSet?.fillAlpha = 0.8
         dataSet?.drawFilledEnabled = true
         dataSet?.drawHorizontalHighlightIndicatorEnabled = false
         dataSet?.drawVerticalHighlightIndicatorEnabled = false
         dataSet?.highlightLineWidth = 1.0
-        let data = LineChartData(dataSet: dataSet)
+        let data = LineChartData(dataSet: dataSet ?? LineChartDataSet(entries: entries, label: ""))
         data.setDrawValues(false)
         lineChartView.data = data
         
@@ -438,7 +438,7 @@ extension GraphTableViewController: ChartViewDelegate {
     
 }
 
-class ChartXAxisFormatter: NSObject,IAxisValueFormatter {
+class ChartXAxisFormatter: NSObject,AxisValueFormatter {
     fileprivate var dateFormatter: DateFormatter?
     fileprivate var referenceTimeInterval: TimeInterval?
     

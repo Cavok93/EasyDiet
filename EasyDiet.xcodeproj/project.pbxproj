@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -38,6 +38,7 @@
 		23D27D6326E2063C00A67D01 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D6226E2063C00A67D01 /* QuestionViewController.swift */; };
 		23D27D6626E2066200A67D01 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D6526E2066200A67D01 /* QuestionTableViewCell.swift */; };
 		23D27D9326E33E5200A67D01 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D27D9226E33E5200A67D01 /* CustomTextField.swift */; };
+		A2883F0A29C2DFB700139C40 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = A2883F0929C2DFB700139C40 /* Charts */; };
 		F294BF2CFD0DBEA8188E46BE /* Pods_EasyDiet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD04EC6CC489125D7D6BE5E9 /* Pods_EasyDiet.framework */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F294BF2CFD0DBEA8188E46BE /* Pods_EasyDiet.framework in Frameworks */,
+				A2883F0A29C2DFB700139C40 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +282,9 @@
 			dependencies = (
 			);
 			name = EasyDiet;
+			packageProductDependencies = (
+				A2883F0929C2DFB700139C40 /* Charts */,
+			);
 			productName = EasyDiet;
 			productReference = 238A4F2C26D7CFE90091819A /* EasyDiet.app */;
 			productType = "com.apple.product-type.application";
@@ -307,6 +312,9 @@
 				Base,
 			);
 			mainGroup = 238A4F2326D7CFE80091819A;
+			packageReferences = (
+				A2883F0829C2DFB700139C40 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = 238A4F2D26D7CFE90091819A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -609,6 +617,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A2883F0829C2DFB700139C40 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A2883F0929C2DFB700139C40 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A2883F0829C2DFB700139C40 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		238A4F3826D7CFE90091819A /* EasyDiet.xcdatamodeld */ = {
